@@ -13,10 +13,10 @@ roles = Hash[roles]
 user_ong = User.find_or_create_by(email: '2020@wedoo.cl') do |u|
   u.password = "12345678"
   u.role = roles[:ong]
-  u.confirmed_at = Date.new
+  u.confirmed_at = Date.today
 end
 user_admin = User.find_or_create_by(email: 'awesome_admin@wedoo.cl') do |u|
   u.password = "12345678"
   u.role = roles[:admin]
-  u.confirmed_at = Date.new
+  u.confirmed_at = Date.today
 end
