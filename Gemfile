@@ -37,6 +37,13 @@ end
 gem 'devise'
 gem 'declarative_authorization'
 
+# bootstrap 3
+gem 'twitter-bootstrap-rails', git: 'git://github.com/seyhunak/twitter-bootstrap-rails.git', :branch => "bootstrap3"
+
+# estas gemas me han sido útiles para formularios
+# 
+#gem 'simple_form'
+#gem 'nested_form'
 
 group :development do
   # mejora los mensajes de error en el browser
