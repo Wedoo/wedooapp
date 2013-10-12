@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  signs_count: 1
+  donations_count: 1
+  donations_amount: 1
+  conversions_count: 1
+  initiative_id: 
+
+two:
+  signs_count: 1
+  donations_count: 1
+  donations_amount: 1
+  conversions_count: 1
+  initiative_id: 
