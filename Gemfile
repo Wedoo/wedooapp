@@ -32,6 +32,8 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+# Use mysql as the database for Active Record
+gem 'mysql2'
 
 # usuario y autorizacion
 gem 'devise'
