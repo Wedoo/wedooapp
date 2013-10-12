@@ -22,8 +22,8 @@ ActiveRecord::Schema.define(version: 20131012162448) do
     t.datetime "updated_at"
   end
 
-  add_index "ads", ["initiative_id"], name: "index_ads_on_initiative_id"
-  add_index "ads", ["type"], name: "index_ads_on_type"
+  add_index "ads", ["initiative_id"], name: "index_ads_on_initiative_id", using: :btree
+  add_index "ads", ["type"], name: "index_ads_on_type", using: :btree
 
   create_table "initiative_stats", force: true do |t|
     t.integer  "signs_count"
@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 20131012162448) do
     t.datetime "updated_at"
   end
 
-  add_index "initiative_stats", ["initiative_id"], name: "index_initiative_stats_on_initiative_id"
+  add_index "initiative_stats", ["initiative_id"], name: "index_initiative_stats_on_initiative_id", using: :btree
 
   create_table "initiatives", force: true do |t|
     t.string   "title",            null: false
@@ -48,8 +48,8 @@ ActiveRecord::Schema.define(version: 20131012162448) do
     t.datetime "updated_at"
   end
 
-  add_index "initiatives", ["ong_id"], name: "index_initiatives_on_ong_id"
-  add_index "initiatives", ["title"], name: "index_initiatives_on_title"
+  add_index "initiatives", ["ong_id"], name: "index_initiatives_on_ong_id", using: :btree
+  add_index "initiatives", ["title"], name: "index_initiatives_on_title", using: :btree
 
   create_table "ongs", force: true do |t|
     t.string   "name",                    null: false
@@ -63,9 +63,9 @@ ActiveRecord::Schema.define(version: 20131012162448) do
     t.datetime "updated_at"
   end
 
-  add_index "ongs", ["facebook"], name: "index_ongs_on_facebook", unique: true
-  add_index "ongs", ["name"], name: "index_ongs_on_name", unique: true
-  add_index "ongs", ["twitter"], name: "index_ongs_on_twitter", unique: true
+  add_index "ongs", ["facebook"], name: "index_ongs_on_facebook", unique: true, using: :btree
+  add_index "ongs", ["name"], name: "index_ongs_on_name", unique: true, using: :btree
+  add_index "ongs", ["twitter"], name: "index_ongs_on_twitter", unique: true, using: :btree
 
   create_table "related_links", force: true do |t|
     t.text     "description"
@@ -75,7 +75,7 @@ ActiveRecord::Schema.define(version: 20131012162448) do
     t.datetime "updated_at"
   end
 
-  add_index "related_links", ["initiative_id"], name: "index_related_links_on_initiative_id"
+  add_index "related_links", ["initiative_id"], name: "index_related_links_on_initiative_id", using: :btree
 
   create_table "roles", force: true do |t|
     t.string   "name"
@@ -84,7 +84,7 @@ ActiveRecord::Schema.define(version: 20131012162448) do
     t.datetime "updated_at"
   end
 
-  add_index "roles", ["symbol"], name: "index_roles_on_symbol", unique: true
+  add_index "roles", ["symbol"], name: "index_roles_on_symbol", unique: true, using: :btree
 
   create_table "signs", force: true do |t|
     t.string   "first_name",    null: false
@@ -97,10 +97,10 @@ ActiveRecord::Schema.define(version: 20131012162448) do
     t.datetime "updated_at"
   end
 
-  add_index "signs", ["email"], name: "index_signs_on_email"
-  add_index "signs", ["identifier"], name: "index_signs_on_identifier"
-  add_index "signs", ["initiative_id"], name: "index_signs_on_initiative_id"
-  add_index "signs", ["validated"], name: "index_signs_on_validated"
+  add_index "signs", ["email"], name: "index_signs_on_email", using: :btree
+  add_index "signs", ["identifier"], name: "index_signs_on_identifier", using: :btree
+  add_index "signs", ["initiative_id"], name: "index_signs_on_initiative_id", using: :btree
+  add_index "signs", ["validated"], name: "index_signs_on_validated", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -124,10 +124,10 @@ ActiveRecord::Schema.define(version: 20131012162448) do
     t.integer  "role_id"
   end
 
-  add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-  add_index "users", ["role_id"], name: "index_users_on_role_id"
-  add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true
+  add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["role_id"], name: "index_users_on_role_id", using: :btree
+  add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
 
 end
