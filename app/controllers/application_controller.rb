@@ -3,7 +3,9 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   
-  before_action :load_ong
+  @@wedoo_subdomain = '.wedoo'
+  
+  helper_method :ong
   
   protected
   def permission_denied
@@ -15,9 +17,16 @@ class ApplicationController < ActionController::Base
     redirect_to root_url
   end
   
-  private
-  def load_ong
-    @ong ||= params.has_key?(:ong_id) ? Ong.find(params[:ong_id]) : nil
+  def ong
+    return @ong if defined? @ong
+    if params.has_key?(:ong_id)
+      return @ong = Ong.find(params[:ong_id])
+    end
+    # TODO: sería choro poder generar urls con la ong como subdominio directamente, en lugar
+    # de que actualmente genera un path /ongs/:id
+    subdomain = request.subdomain
+    subdomain = subdomain[0..-(@@wedoo_subdomain.size + 1)] if subdomain.include?(@@wedoo_subdomain)
+    return @ong = Ong.find_by(subdomain: subdomain)
   end
   
 end
