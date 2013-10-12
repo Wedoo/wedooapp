@@ -8,6 +8,15 @@
 </head>
 <body>
 
+
+  <% unless flash.empty? %>
+    <div class="alerts">
+      <% flash.each do |name, msg| %>
+        <div class="<%= name %>"><%= msg %></div>
+      <% end %>
+    </div>
+  <% end %>
+
 <%= yield %>
 
 </body>

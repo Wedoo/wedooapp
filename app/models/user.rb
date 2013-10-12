@@ -3,4 +3,15 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :confirmable, :recoverable, :registerable,
          :trackable, :timeoutable, :validatable, :lockable
+  belongs_to :role
+  
+  
+  def role_symbol
+    role.nil? ? nil : role.symbol.to_sym
+  end
+  
+  def role_symbols
+    @role_symbols ||= role.nil? ? [] : [role.symbol.to_sym]
+  end
+  
 end
