@@ -38,7 +38,7 @@ gem 'devise'
 gem 'declarative_authorization'
 
 # bootstrap 3
-gem 'twitter-bootstrap-rails', git: 'git://github.com/seyhunak/twitter-bootstrap-rails.git', :branch => "bootstrap3"
+gem 'bootstrap-sass', git: 'https://github.com/thomas-mcdonald/bootstrap-sass', branch: '3'
 
 # estas gemas me han sido útiles para formularios
 # 
