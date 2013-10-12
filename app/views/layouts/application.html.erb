@@ -1,23 +1,94 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Wedoo</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<meta name="author" content="wedoo">
+  <title>Educación 2020</title>
+	<!--[if lt IE 9]>
+			<script src="js/html5shiv.js"></script>
+		<![endif]-->
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+	
+	<div id="container">
+		
+		<!-- NavBar -->
+		<div class="navbar navbar-inverse">
+			<div class="container">
+				<ul class="nav navbar-nav pull-right">
+					<% unless @ong.webpage.blank? %>
+						<li><%= link_to content_tag(:i, "", class: "icon-globe") + "Web", @ong.webpage %></li>
+					<% end %>
+					<% unless @ong.email.blank? %>
+						<li><%= link_to content_tag(:i, "", class: "icon-envelope")+ "Contacto", "mailto:#{@ong.email}" %>
+						</li>
+					<% end %>
+				</ul>
+			</div>
+		</div>
+		
+		<!-- Header -->
+		<header id="header">
+			<div class="container">
+				<!-- Logo -->
+				<div id="logo"><a href="./index.html" title="home"><%= image_tag "ed2020.png", alt: "Logo" %></a></div>
+				<!-- Site Menu -->
+				<nav id="siteMenu" class="navbar">
+					<div class="pull-right">
 
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse"><i class="icon-collapse"></i></button>
 
-  <% unless flash.empty? %>
-    <div class="alerts">
-      <% flash.each do |name, msg| %>
-        <div class="<%= name %>"><%= msg %></div>
-      <% end %>
-    </div>
-  <% end %>
+						<div id="siteMenuCollapse" class="navbar-collapse collapse navbar-responsive-collapse">
+							<ul class="nav navbar-nav">
+								<li><a href="#">Home</a></li>
+								<li><a href="#">Inicitivas</a></li>
+								<li><a href="#">Leyes</a></li>
+							</ul>
+						</div><!--/.nav-collapse -->
+					</div>
 
-<%= yield %>
+				</nav>
+			</div>
+		</header>
+
+		<% unless flash.empty? %>
+	    <div class="alerts">
+	      <% flash.each do |name, msg| %>
+	        <div class="<%= name %>"><%= msg %></div>
+	      <% end %>
+	    </div>
+	  <% end %>
+
+		
+		
+		
+		<!-- Main -->
+		<section id="main">
+			<div class="container clearfix">			
+				<%= yield %>
+			</div>
+		</section>
+
+	</div>
+	<!--! end of #container -->
+
+	<!-- Footer -->
+	<footer id="footer">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<p>powered by <strong>wedoo</strong></p>
+				</div>
+			</div>
+		</div>
+	</footer>
 
 </body>
 </html>

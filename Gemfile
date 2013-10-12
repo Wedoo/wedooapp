@@ -41,6 +41,8 @@ gem 'declarative_authorization'
 
 # bootstrap 3
 gem 'bootstrap-sass', git: 'https://github.com/thomas-mcdonald/bootstrap-sass', branch: '3'
+# gem 'font-awesome-sass-rails', '~> 3.0.2.2'
+gem "font-awesome-rails"
 
 # estas gemas me han sido útiles para formularios
 # 

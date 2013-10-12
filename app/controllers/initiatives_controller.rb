@@ -1,7 +1,5 @@
 class InitiativesController < ApplicationController
   
-  before_action :load_ong
-  
   def new
     @initiative = Initiative.new
   end
@@ -37,7 +35,4 @@ class InitiativesController < ApplicationController
     params.require(:initiative).permit(:title, :description, :hashtag)
   end
   
-  def load_ong
-    @ong = Ong.find(params[:ong_id])
-  end
 end

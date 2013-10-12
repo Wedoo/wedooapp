@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131012200838) do
+ActiveRecord::Schema.define(version: 20131012213731) do
 
   create_table "ads", force: true do |t|
     t.string   "type"
@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(version: 20131012200838) do
     t.string   "facebook"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "email"
   end
 
   add_index "ongs", ["facebook"], name: "index_ongs_on_facebook", unique: true, using: :btree
