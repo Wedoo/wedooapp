@@ -402,7 +402,7 @@ body {
 ------------------------------------------------------------------*/
 #main {
 	padding-top:0;
-	padding-bottom: 140px;
+	padding-bottom: 80px;
 }
 /* Text */
 h1 {font-size: 2.4em;}
@@ -462,8 +462,10 @@ table td {text-shadow:0 1px 0 #fff;}
 }
 .actionBox > p {
 	margin:0 40px;
-	font-size:120%;
-	padding-top:5px;
+	font-size:100%;
+	padding-top:7px;
+	text-shadow:0 1px 0 #fff;
+	font-family: 'Capriola', sans-serif;
 }
 .actionBox > i {
 	margin:-10px -19px;
@@ -480,7 +482,48 @@ table td {text-shadow:0 1px 0 #fff;}
 #donateButton > i {background:#f0ad4e;}
 i {margin-right:5px;}
 
-
+/* Initiative List */
+.initiativeList {
+	font-size:60%;
+	padding:10px;
+	position:relative;
+	cursor:pointer;
+}
+.initiativeList a {
+	margin:-19px;
+	padding:10px;
+}
+.initiativeList a:hover {
+	text-decoration:none;
+}
+.initiativeList img {
+	width:80px;
+	margin:-10px;
+}
+.initiativeList h2 {
+	margin:0 30px 0 90px;
+	cursor:pointer;
+	color:#777;
+	font-weight:normal;
+}
+.initiativeList:hover h2 {color:#555;}
+.initiativeList i {
+	position:absolute;
+	top:50%;
+	margin-top:-9px;
+	right:5px;
+	color:#bbb;
+}
+.initiativeList:hover i {color:#777;}
+@media (max-width:992px) {
+	.initiativeList {font-size:50%;}
+	.initiativeList h2 {margin-top:-8px;}
+}
+.initiativeList.action {background:#4c4c4c;}
+.initiativeList.action h2 {color:#bbb; text-shadow:0 -1px 0 #333;}
+.initiativeList.action:hover h2 {color:#eee;}
+.initiativeList.action i {color:#666;}
+.initiativeList.action:hover i {color:#aaa;}
 
 /* Forms
 ------------------------------------------------------------------*/
