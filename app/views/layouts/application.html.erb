@@ -27,7 +27,7 @@
 						<li><%= link_to content_tag(:i, "", class: "icon-globe") + "Web", @ong.webpage %></li>
 					<% end %>
 					<% unless @ong.email.blank? %>
-						<li><%= link_to content_tag(:i, "", class: "icon-envelope")+ "Contacto", "mailto:#{@ong.email}" %>
+						<li><%= link_to content_tag(:i, "", class: "icon-envelope") + content_tag(:span, "Contacto", class: "hidden-xs"), "mailto:#{@ong.email}" %>
 						</li>
 					<% end %>
 				</ul>
