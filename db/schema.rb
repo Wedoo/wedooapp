@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131012162448) do
+ActiveRecord::Schema.define(version: 20131012200838) do
 
   create_table "ads", force: true do |t|
     t.string   "type"
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 20131012162448) do
     t.integer  "ong_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "image"
   end
 
   add_index "initiatives", ["ong_id"], name: "index_initiatives_on_ong_id", using: :btree

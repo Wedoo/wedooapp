@@ -45,7 +45,9 @@ gem 'bootstrap-sass', git: 'https://github.com/thomas-mcdonald/bootstrap-sass', 
 # estas gemas me han sido útiles para formularios
 # 
 gem 'simple_form'
-#gem 'nested_form'
+gem 'nested_form'
+
+gem "paperclip", '~> 3.5.1'
 
 group :development do
   # mejora los mensajes de error en el browser

@@ -1,0 +1,28 @@
+<h1>Usuarios</h1>
+<%= link_to "cerrar sesion", destroy_user_session_path, :method => :delete %>
+<table>
+  <thead>
+    <tr>
+      <th>Correo</th>
+      <th>Rol</th>
+      <th>Opciones</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.email %></td>
+        <td><%= user.role_symbol %></td>
+        <td>
+          <%= link_to 'Show', user %>
+          <%= link_to 'Edit', edit_user_path(user) %>
+          <%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+<%= link_to 'New User', new_user_path %>
