@@ -1,7 +1,12 @@
 Wedoo::Application.routes.draw do
+
   root 'home#index'
   get "home/index"
+
+  # ATENCION: "devise_for :users" debe ir antes de "resources :users" !
   devise_for :users
+  resources :users
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
