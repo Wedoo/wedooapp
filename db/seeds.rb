@@ -46,7 +46,7 @@ initiative1 = Initiative.create do |i|
   EOF
   i.hashtag = "ReformaEducativaQueChileNecesita"
   i.signs_active = true
-  i.donations_active = true
+  i.donations_active = false
   i.ong = ong
   i.initiative_stat = InitiativeStat.new(signs_count: 100, donations_count: 10, donations_amount: 50, conversions_count: 20)
 end
@@ -78,8 +78,8 @@ initiative3 = Initiative.create do |i|
   </div></div></div>
   EOF
   i.hashtag = "RechazoDescuentoTributarioEducPrivada"
-  i.signs_active = true
-  i.donations_active = true
+  i.signs_active = false
+  i.donations_active = false
   i.ong = ong
   i.initiative_stat = InitiativeStat.new(signs_count: 102, donations_count: 12, donations_amount: 52, conversions_count: 22)
 end
@@ -98,8 +98,8 @@ initiative4 = Initiative.create do |i|
   </div></div></div>
   EOF
   i.hashtag = "NoMásNegociadoConEscuelasDePedagogía"
-  i.signs_active = true
-  i.donations_active = true
+  i.signs_active = false
+  i.donations_active = false
   i.ong = ong
   i.initiative_stat = InitiativeStat.new(signs_count: 103, donations_count: 13, donations_amount: 53, conversions_count: 23)
 end
