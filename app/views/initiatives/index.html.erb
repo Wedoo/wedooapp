@@ -1,2 +1,24 @@
-<h1>Initiatives#index</h1>
-<p>Find me in app/views/initiatives/index.html.erb</p>
+<div class="row">
+	<div class="col-md-12">
+		<h1>Apoya nuestras Iniciativas</h1>
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+		
+		<%= render partial: "initiative", collection: @initiatives %>
+	</div>
+	<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+		<div class="textBox">
+			<h6><i class="icon-time"></i>Iniciativas pasadas</h6>
+			<div class="list-group">
+				<a href="#" class="list-group-item">Cras justo odio</a>
+				<a href="#" class="list-group-item">Dapibus ac facilisis in</a>
+				<a href="#" class="list-group-item">Morbi leo risus</a>
+				<a href="#" class="list-group-item">Porta ac consectetur ac</a>
+				<a href="#" class="list-group-item">Vestibulum at eros</a>
+			</div>
+		</div>
+		
+
+</div>

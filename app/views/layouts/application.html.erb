@@ -24,10 +24,17 @@
 			<div class="container">
 				<ul class="nav navbar-nav pull-right">
 					<% unless ong.webpage.blank? %>
-						<li><%= link_to content_tag(:i, "", class: "icon-globe") + "Web", ong.webpage %></li>
+						<li>
+							<%= link_to ong.webpage do %>
+								<i class="icon-globe"></i>Web
+							<% end %>
+						</li>
 					<% end %>
 					<% unless ong.email.blank? %>
-						<li><%= link_to content_tag(:i, "", class: "icon-envelope") + content_tag(:span, "Contacto", class: "hidden-xs"), "mailto:#{ong.email}" %>
+						<li>
+							<%= link_to "mailto:#{ong.email}" do %>
+								<i class="icon-envelope"></i><span class="hidden-xs">Contacto</span>
+							<% end %>
 						</li>
 					<% end %>
 				</ul>
@@ -38,7 +45,7 @@
 		<header id="header">
 			<div class="container">
 				<!-- Logo -->
-				<div id="logo"><a href="./index.html" title="home"><%= image_tag "ed2020.png", alt: "Logo" %></a></div>
+				<div id="logo"><%= link_to image_tag("ed2020.png", alt: "Logo"), root_path %></div>
 				<!-- Site Menu -->
 				<nav id="siteMenu" class="navbar">
 					<div class="pull-right">
@@ -65,9 +72,7 @@
 	    </div>
 	  <% end %>
 
-		
-		
-		
+
 		<!-- Main -->
 		<section id="main">
 			<div class="container clearfix">			

@@ -27,6 +27,7 @@ class InitiativesController < ApplicationController
   end
 
   def index
+    @initiatives = Initiative.ong_by_actions(ong)
   end
   
   

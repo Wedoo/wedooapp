@@ -18,7 +18,7 @@
 			<p>Con tu ayuda podríamos llegar a <%= @initiative.signs_count + 2000 %> personas</p>
 		</div>
 		<div class="textBox">
-			<%= @initiative.description %>
+			<%= @initiative.description.html_safe %>
 		</div>
 		<div class="well statistics">
 			<h6><i class="icon-bar-chart"></i>Estadísticas de esta iniciativa</h6>
