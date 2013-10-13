@@ -1,3 +1,4 @@
+ruby "2.0.0"
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -32,9 +33,6 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-# Use mysql as the database for Active Record
-gem 'mysql2'
-
 # usuario y autorizacion
 gem 'devise'
 gem 'declarative_authorization'
@@ -60,6 +58,13 @@ group :development do
   gem 'quiet_assets'
   
   gem 'awesome_print'
+  
+  gem 'mysql2'
+end
+
+group :production do
+  gem 'rails_12factor'
+  gem 'pg'
 end
 
 # Use ActiveModel has_secure_password
