@@ -300,10 +300,8 @@ body {
 #logo a {display: inline-block;}
 #logo img {vertical-align: bottom; cursor:pointer;}
 @media (max-width:992px) and (min-width:768px) {
-
 }
 @media (max-width: 767px) {
-
 }
 /* Site Menu
 ------------------------------------------------------------------*/
@@ -520,10 +518,29 @@ i {margin-right:5px;}
 	.initiativeList h2 {margin-top:-8px;}
 }
 .initiativeList.action {background:#4c4c4c;}
-.initiativeList.action h2 {color:#bbb; text-shadow:0 -1px 0 #333;}
-.initiativeList.action:hover h2 {color:#eee;}
-.initiativeList.action i {color:#666;}
-.initiativeList.action:hover i {color:#aaa;}
+.initiativeList.action h2 {color:#bbb; color:rgba(255,255,255,0.6); text-shadow:none;}
+.initiativeList.action:hover h2 {color:#eee; color:rgba(255,255,255,0.8);}
+.initiativeList.action i {color:#666; color:rgba(255,255,255,0.2);}
+.initiativeList.action:hover i {color:#aaa; color:rgba(255,255,255,0.4);}
+
+/* Edit Initiative */
+.editInitiative p {margin-bottom:5px;}
+.editInitiative hr {margin:8px 0;}
+.editInitiative .btn-group {border:1px solid #ddd;}
+.editInitiative .btn-group label.btn {background:#eee;}
+.editInitiative .btn-group label.btn.active {background:#f6c8b7; color:#333;}
+.editInitiative .btn-group label.btn + label.btn.active {background:#d2eaa7;}
+@media (max-width: 767px) {
+	.editInitiative .row div {
+		height:30px;
+		margin-bottom:5px;
+	}
+	.editInitiative .row div .btn-group {
+		position:absolute;
+		top:0;
+		right:0;
+	}
+}
 
 /* Forms
 ------------------------------------------------------------------*/
