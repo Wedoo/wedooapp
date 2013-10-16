@@ -26,7 +26,7 @@ class ApplicationController < ActionController::Base
     # de que actualmente genera un path /ongs/:id
     subdomain = request.subdomain
     subdomain = subdomain[0..-(@@wedoo_subdomain.size + 1)] if subdomain.include?(@@wedoo_subdomain)
-    return @ong = Ong.find_by(subdomain: subdomain)
+    return @ong = Ong.find_by(subdomain: subdomain) || Ong.first
   end
   
 end
