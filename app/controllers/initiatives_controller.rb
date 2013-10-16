@@ -27,7 +27,8 @@ class InitiativesController < ApplicationController
   end
 
   def index
-    @initiatives = Initiative.ong_by_actions(ong)
+    @initiatives = Initiative.ong_by_actions(ong).only_active
+    @past_initiatives = Initiative.where(ong: ong, active: false).limit(10)
   end
   
   

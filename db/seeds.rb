@@ -98,6 +98,7 @@ initiative4 = Initiative.create do |i|
   </div></div></div>
   EOF
   i.hashtag = "NoMásNegociadoConEscuelasDePedagogía"
+  i.active = false
   i.signs_active = false
   i.donations_active = false
   i.ong = ong
