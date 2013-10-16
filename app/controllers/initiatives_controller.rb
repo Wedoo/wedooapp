@@ -6,15 +6,17 @@ class InitiativesController < ApplicationController
 
   def create
     @initiative = Initiative.new(initiative_params)
-    @initiative.ong = @ong
+    @initiative.ong = ong
+    @initiative.initiative_stat = InitiativeStat.new
     if @initiative.save
       flash.notice = "Iniciativa creada exitosamente"
-      redirect_to ong_initiative_path(@ong, @initiative)
+      redirect_to ong_initiative_path(ong, @initiative)
     end
   end
 
   def show
     @initiative = Initiative.find(params[:id])
+    @initiatives = Initiative.ong_by_actions(ong)
   end
 
   def edit

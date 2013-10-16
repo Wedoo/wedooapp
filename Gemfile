@@ -45,6 +45,7 @@ gem 'simple_form'
 gem 'nested_form'
 
 gem "paperclip", '~> 3.5.1'
+gem 'bootstrap-wysihtml5-rails', :require => 'bootstrap-wysihtml5-rails', :git => 'git://github.com/Nerian/bootstrap-wysihtml5-rails.git'
 
 group :development do
   # mejora los mensajes de error en el browser
