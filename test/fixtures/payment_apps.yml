@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  pay_service_id: 
+  pay_service_type: Pay service
+  last_account_balance: 1
+  active: false
+
+two:
+  pay_service_id: 
+  pay_service_type: Pay service
+  last_account_balance: 1
+  active: false

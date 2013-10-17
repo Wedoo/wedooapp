@@ -1,0 +1,31 @@
+<h1>Listing payment_apps</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Pay service</th>
+      <th>Last account balance</th>
+      <th>Active</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @payment_apps.each do |payment_app| %>
+      <tr>
+        <td><%= payment_app.pay_service %></td>
+        <td><%= payment_app.last_account_balance %></td>
+        <td><%= payment_app.active %></td>
+        <td><%= link_to 'Show', payment_app %></td>
+        <td><%= link_to 'Edit', edit_payment_app_path(payment_app) %></td>
+        <td><%= link_to 'Destroy', payment_app, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Payment app', new_payment_app_path %>

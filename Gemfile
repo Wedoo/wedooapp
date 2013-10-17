@@ -68,6 +68,9 @@ group :production do
   gem 'pg'
 end
 
+gem 'acts_as_relation', '~> 1.0'
+
+gem 'paypal-sdk-buttonmanager'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

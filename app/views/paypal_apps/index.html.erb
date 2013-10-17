@@ -1,0 +1,37 @@
+<h1>Listing paypal_apps</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Client</th>
+      <th>Client secret</th>
+      <th>Username</th>
+      <th>App</th>
+      <th>Password</th>
+      <th>Signature</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @paypal_apps.each do |paypal_app| %>
+      <tr>
+        <td><%= paypal_app.client_id %></td>
+        <td><%= paypal_app.client_secret %></td>
+        <td><%= paypal_app.username %></td>
+        <td><%= paypal_app.app_id %></td>
+        <td><%= paypal_app.password %></td>
+        <td><%= paypal_app.signature %></td>
+        <td><%= link_to 'Show', paypal_app %></td>
+        <td><%= link_to 'Edit', edit_paypal_app_path(paypal_app) %></td>
+        <td><%= link_to 'Destroy', paypal_app, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Paypal app', new_ong_paypal_app_path %>

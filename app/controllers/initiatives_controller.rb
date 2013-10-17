@@ -17,6 +17,15 @@ class InitiativesController < ApplicationController
   def show
     @initiative = Initiative.find(params[:id])
     @initiatives = Initiative.ong_by_actions(ong)
+    @button_response=Donation.create_donate_button(10, 'http://localhost', 'http://localshot')
+
+    if(@button_response.success?)
+    
+      @button=@button_response.Website
+    else
+      @button=@button_response.Errors
+
+    end
   end
 
   def edit

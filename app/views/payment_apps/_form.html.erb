@@ -1,0 +1,13 @@
+<%= simple_form_for(@payment_app) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.association :pay_service %>
+    <%= f.input :last_account_balance %>
+    <%= f.input :active %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

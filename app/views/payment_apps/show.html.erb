@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Pay service:</strong>
+  <%= @payment_app.pay_service %>
+</p>
+
+<p>
+  <strong>Last account balance:</strong>
+  <%= @payment_app.last_account_balance %>
+</p>
+
+<p>
+  <strong>Active:</strong>
+  <%= @payment_app.active %>
+</p>
+
+<%= link_to 'Edit', edit_payment_app_path(@payment_app) %> |
+<%= link_to 'Back', payment_apps_path %>

@@ -1,7 +1,7 @@
 class Initiative < ActiveRecord::Base
   belongs_to :ong
   has_one :initiative_stat
-  
+  has_many :donations
   scope :ong_by_actions, -> (ong) { where(ong: ong).order('donations_active DESC, signs_active DESC, created_at DESC') }
   scope :only_active, -> { where(active: true) }
   

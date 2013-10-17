@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131016152955) do
+ActiveRecord::Schema.define(version: 20131017025335) do
 
   create_table "ads", force: true do |t|
     t.string   "type"
@@ -24,6 +24,17 @@ ActiveRecord::Schema.define(version: 20131016152955) do
 
   add_index "ads", ["initiative_id"], name: "index_ads_on_initiative_id", using: :btree
   add_index "ads", ["type"], name: "index_ads_on_type", using: :btree
+
+  create_table "donations", force: true do |t|
+    t.integer  "initiative_id"
+    t.integer  "paymentaccount_id"
+    t.integer  "amount"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "donations", ["initiative_id"], name: "index_donations_on_initiative_id", using: :btree
+  add_index "donations", ["paymentaccount_id"], name: "index_donations_on_paymentaccount_id", using: :btree
 
   create_table "initiative_stats", force: true do |t|
     t.integer  "signs_count"
@@ -71,6 +82,29 @@ ActiveRecord::Schema.define(version: 20131016152955) do
   add_index "ongs", ["facebook"], name: "index_ongs_on_facebook", unique: true, using: :btree
   add_index "ongs", ["name"], name: "index_ongs_on_name", unique: true, using: :btree
   add_index "ongs", ["twitter"], name: "index_ongs_on_twitter", unique: true, using: :btree
+
+  create_table "payment_apps", force: true do |t|
+    t.integer  "as_payment_app_id"
+    t.string   "as_payment_app_type"
+    t.integer  "last_account_balance"
+    t.boolean  "active"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "ong_id"
+  end
+
+  add_index "payment_apps", ["ong_id"], name: "index_payment_apps_on_ong_id", using: :btree
+
+  create_table "paypal_apps", force: true do |t|
+    t.string   "client_id"
+    t.string   "client_secret"
+    t.string   "username"
+    t.string   "app_id"
+    t.string   "password"
+    t.string   "signature"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "related_links", force: true do |t|
     t.text     "description"
