@@ -2,7 +2,6 @@ Wedoo::Application.routes.draw do
 
 
   root 'home#index'
-  get "home/index"
 
   # ATENCION: "devise_for :users" debe ir antes de "resources :users" !
   devise_for :users
@@ -10,8 +9,7 @@ Wedoo::Application.routes.draw do
 
   resources :ongs, only: :show do
     resources :initiatives 
-    resources :paypal_apps
-    
+    resources :paypal_apps    
   end
 
 
