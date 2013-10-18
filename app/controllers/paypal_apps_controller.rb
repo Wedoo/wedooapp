@@ -24,14 +24,14 @@ class PaypalAppsController < ApplicationController
   # POST /paypal_apps
   # POST /paypal_apps.json
   def create
-    ap paypal_app_params
-
 
     @paypal_app = PaypalApp.new(paypal_app_params)
+    
     @paypal_app.ong=ong
+
     respond_to do |format|
       if @paypal_app.save
-        format.html { redirect_to @paypal_app, notice: 'Paypal app was successfully created.' }
+        format.html { redirect_to [ong, @paypal_app], notice: 'Paypal app was successfully created.' }
         format.json { render action: 'show', status: :created, location: @paypal_app }
       else
         format.html { render action: 'new' }
@@ -45,7 +45,7 @@ class PaypalAppsController < ApplicationController
   def update
     respond_to do |format|
       if @paypal_app.update(paypal_app_params)
-        format.html { redirect_to @paypal_app, notice: 'Paypal app was successfully updated.' }
+        format.html { redirect_to [ong, @paypal_app], notice: 'Paypal app was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -59,7 +59,7 @@ class PaypalAppsController < ApplicationController
   def destroy
     @paypal_app.destroy
     respond_to do |format|
-      format.html { redirect_to paypal_apps_url }
+      format.html { redirect_to ong_paypal_apps_url(ong) }
       format.json { head :no_content }
     end
   end
@@ -72,6 +72,6 @@ class PaypalAppsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def paypal_app_params
-      params.require(:paypal_app).permit(:client_id, :client_secret, :username, :app_id, :password, :signature)
+      params.require(:paypal_app).permit(:active,:mode,:client_id, :client_secret, :username, :app_id, :password, :signature)
     end
 end

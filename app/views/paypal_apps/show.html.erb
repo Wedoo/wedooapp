@@ -1,7 +1,16 @@
 <p id="notice"><%= notice %></p>
-
 <p>
-  <strong>Client:</strong>
+  <strong>Active:</strong>
+  <%= @paypal_app.active %>
+</p>
+<p>
+  <strong>Mode:</strong>
+  <%= @paypal_app.mode %>  
+</p>
+
+<h2>REST API</h2>
+<p>
+  <strong>Client id:</strong>
   <%= @paypal_app.client_id %>
 </p>
 
@@ -9,14 +18,14 @@
   <strong>Client secret:</strong>
   <%= @paypal_app.client_secret %>
 </p>
-
+<h2>Classic API</h2>
 <p>
   <strong>Username:</strong>
   <%= @paypal_app.username %>
 </p>
 
 <p>
-  <strong>App:</strong>
+  <strong>App id:</strong>
   <%= @paypal_app.app_id %>
 </p>
 
@@ -30,5 +39,5 @@
   <%= @paypal_app.signature %>
 </p>
 
-<%= link_to 'Edit', edit_paypal_app_path(@paypal_app) %> |
-<%= link_to 'Back', paypal_apps_path %>
+<%= link_to 'Edit', edit_ong_paypal_app_path(ong,@paypal_app) %> |
+<%= link_to 'Back', ong_paypal_apps_path %>

@@ -24,9 +24,9 @@
         <td><%= paypal_app.app_id %></td>
         <td><%= paypal_app.password %></td>
         <td><%= paypal_app.signature %></td>
-        <td><%= link_to 'Show', paypal_app %></td>
-        <td><%= link_to 'Edit', edit_paypal_app_path(paypal_app) %></td>
-        <td><%= link_to 'Destroy', paypal_app, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', ong_paypal_app_path(ong,paypal_app) %></td>
+        <td><%= link_to 'Edit', edit_ong_paypal_app_path(ong,paypal_app) %></td>
+        <td><%= link_to 'Destroy', ong_paypal_app_path(ong,paypal_app), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

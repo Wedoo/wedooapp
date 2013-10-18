@@ -1,10 +1,6 @@
 Wedoo::Application.routes.draw do
 
 
-  resources :payment_apps
-
-  resources :paypal_apps
-
   root 'home#index'
   get "home/index"
 

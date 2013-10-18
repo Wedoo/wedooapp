@@ -25,10 +25,6 @@ class Donation < ActiveRecord::Base
   end
 
 
-def hola
-
-
-end
 
 
 end
