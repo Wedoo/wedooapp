@@ -1,0 +1,23 @@
+<h6><i class="icon-pencil"></i>Únete a esta iniciativa</h6>
+<hr />
+
+<%= simple_form_for sign, url: ong_initiative_signs_path(ong, @initiative), remote: true do |f| %>
+  <% if sign.errors.any? %>
+    <div id="error_explanation">
+      <h2>Tienes los siguientes errores:</h2>
+      <ul>
+      <% sign.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <% if @thankyou_message %>
+    <h4><%= @thankyou_message %></h4>
+  <% end %>
+  <%= f.input :first_name, placeholder: "Tu nombre" %>
+  <%= f.input :last_name, placeholder: "Tu apellido" %>
+  <%= f.input :email, placeholder: "Tu correo electrónico" %>
+  <%= f.input :identifier, placeholder: "Tu RUT", input_html: { data: { validate: "rut" } } %>
+  <%= f.button :submit, "Firmar", class: "btn-info btn-lg btn-block", disable_with: "Firmando..." %>
+<% end %>

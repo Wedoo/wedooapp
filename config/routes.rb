@@ -1,6 +1,5 @@
 Wedoo::Application.routes.draw do
 
-
   root 'home#index'
 
   # ATENCION: "devise_for :users" debe ir antes de "resources :users" !
@@ -8,7 +7,9 @@ Wedoo::Application.routes.draw do
   resources :users
 
   resources :ongs, only: :show do
-    resources :initiatives 
+    resources :initiatives do
+      resources :signs, only: [:new, :create]
+    end
     resources :paypal_apps    
   end
 

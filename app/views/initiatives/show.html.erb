@@ -15,9 +15,9 @@
 	<div class="col-xs-12 col-sm-6 col-md-8 col-lg-8">
     <% if @initiative.signs_active %>
   		<div id="signButton" class="well clearfix actionBox">
-  			<a href="#signInitiative" class="pull-right btn btn-info">Firma</a>
+  			<a id="goto-sign-button" href="#signInitiative" class="pull-right btn btn-info">Firma</a>
   			<i class="pull-left icon-pencil"></i>
-  			<p>Contigo podemos ser <strong><%= @initiative.signs_count + 1 %></strong> adherentes</p>
+  			<p>Contigo podemos ser <strong data-signs-count="1"><%= @initiative.signs_count + 1 %></strong> adherentes</p>
   		</div>
     <% end %>
     <% if @initiative.donations_active %>
@@ -35,35 +35,15 @@
 			<h6><i class="icon-bar-chart"></i>Estadísticas de esta iniciativa</h6>
 			<hr>
 			<div class="row">
-				<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4"><i class="icon-pencil"></i><strong><%= @initiative.signs_count || 0 %></strong> firmas</div>
+				<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4"><i class="icon-pencil"></i><strong data-signs-count><%= @initiative.signs_count || 0 %></strong> firmas</div>
 				<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4"><i class="icon-money"></i><strong><%= @initiative.donations_count || 0 %></strong> donaciones</div>
 				<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4"><i class="icon-eye-open"></i><strong>2000</strong> visitas</div>
 			</div>
 		</div>
 		<% if @initiative.signs_active %>
-			<div id="signInitiative" class="well">
-				<h6><i class="icon-pencil"></i>Únete a esta iniciativa</h6>
-				<hr>
-				<form role="form">
-					<div class="form-group">
-						<label for="signNames">Nombres</label>
-						<input type="email" class="form-control" id="signNames" placeholder="pon tus nombres">
-					</div>
-					<div class="form-group">
-						<label for="signSurnames">Apellidos</label>
-						<input type="email" class="form-control" id="signSurnames" placeholder="pon tus apellidos email">
-					</div>
-					<div class="form-group">
-						<label for="signDni">Rut</label>
-						<input type="email" class="form-control" id="signDni" placeholder="número de identificación">
-					</div>
-					<div class="form-group">
-						<label for="signEmail">Correo</label>
-						<input type="email" class="form-control" id="signEmail" placeholder="ingresa tu correo electrónico">
-					</div>
-					<button type="button" class="btn btn-info btn-lg btn-block">Firmar</button>
-				</form>
-			</div>
+      <div id="signInitiative" class="well">
+        <%= render "signs/form", sign: Sign.new %>
+      </div>
 		<% end %>
 	</div>
 

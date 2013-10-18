@@ -1,6 +1,14 @@
 es:
+  errors:
+    messages:
+      rut_invalid: inválido
   activerecord:
     attributes:
       user:
         email: E-mail
         password: Contraseña
+      sign:
+        first_name: Nombre
+        last_name: Apellido
+        email: E-mail
+        identifier: R.U.T.

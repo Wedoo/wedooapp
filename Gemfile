@@ -43,6 +43,7 @@ gem "font-awesome-rails"
 # 
 gem 'simple_form'
 gem 'nested_form'
+gem 'rut_validator'
 
 gem "paperclip", '~> 3.5.1'
 gem 'bootstrap-wysihtml5-rails', :require => 'bootstrap-wysihtml5-rails', :git => 'git://github.com/Nerian/bootstrap-wysihtml5-rails.git'
