@@ -168,6 +168,15 @@ dd {margin-bottom:5px;}
 .small {font-size:80%;}
 .big {font-size:120%;}
 
+.alerts {
+	position: absolute;
+	width: 80%;
+	margin: 40px 10%;
+	top: 0;
+	left: 0;
+	z-index: 1001;
+}
+
 /* Effects
 ------------------------------------------------------------------*/
 /* Default Animation */
@@ -291,7 +300,7 @@ body {
 	margin-top:-50px;
 	top: 50%;
 	left: 15px;
-	z-index: 10001;
+	z-index: 1001;
 }
 @media (max-width:767px) {
 	#logo {margin-top:-25px;}
@@ -309,7 +318,7 @@ body {
 	position: relative;
 	margin:35px 0 0 0;
 	right:0;
-	z-index:10000;
+	z-index:1000;
 }
 #siteMenu.navbar {
 	-webkit-box-shadow:none;
@@ -488,8 +497,11 @@ i {margin-right:5px;}
 	cursor:pointer;
 }
 .initiativeList a {
-	margin:-19px;
-	padding:10px;
+	display: block;
+    height: 80px;
+    margin: -10px;
+    padding: 10px;
+    width: 100%;
 }
 .initiativeList a:hover {
 	text-decoration:none;
@@ -523,6 +535,15 @@ i {margin-right:5px;}
 .initiativeList.action i {color:#666; color:rgba(255,255,255,0.2);}
 .initiativeList.action:hover i {color:#aaa; color:rgba(255,255,255,0.4);}
 
+/* Twitter Container */
+.twitterContainer > h6 {
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	width: 100%;
+	word-wrap: normal;
+	overflow: hidden;
+}
+
 /* Edit Initiative */
 .editInitiative p {margin-bottom:5px;}
 .editInitiative hr {margin:8px 0;}
@@ -542,6 +563,14 @@ i {margin-right:5px;}
 	}
 }
 
+/* Politicians Container */
+.politiciansContainer {margin-bottom:20px;}
+.politiciansContainer img {margin-right:10px;}
+.politiciansContainer h5, .politiciansContainer p {margin-bottom:0.1em;}
+.politiciansContainer .btn {margin:2px 0;}
+
+.btn.pull-right {margin-left:5px;}
+
 /* Forms
 ------------------------------------------------------------------*/
 input[type="submit"],
@@ -554,6 +583,84 @@ textarea,
 	-webkit-border-radius: 2px;
 	-moz-border-radius: 2px;
 	border-radius: 2px;
+}
+/* Input Image */
+.input-file {position:relative;}
+.input-file input[type="file"] {
+	position:absolute;
+	z-index:2;
+	top:0;
+	left:0;
+	filter: alpha(opacity=0);
+	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+	opacity:0;
+	background-color:transparent;
+	color:transparent
+}
+.input-file .btn {
+	text-align: left;
+	width: 100%;
+	background-color: #fff;
+    border: 1px solid #ccc;
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+    -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+    font-family:sans-serif;
+    color:#555; 
+}
+
+/* Errors */
+.form-group.error {
+	color:#d35b37;
+}
+.form-group.error input[type="text"],
+.form-group.error input[type="password"] {
+	border-color:#d35b37;
+}
+.form-group.error .help-inline {
+	font-size:90%;
+	font-style:italic;
+}
+.error_explanation {
+	clear: both;
+	background: #f9d5ca;
+	display: block;
+	padding: 10px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	margin-bottom: 20px;
+}
+.error_explanation h2 {
+	font-size: 100%;
+	font-weight: normal;
+	color: #d35b37;
+}
+.error_explanation ul {
+	list-style: square;
+	padding-left: 20px;
+	font-size: 90%;
+}
+
+/* Date Picker */
+.datepicker table {
+	font-family:sans-serif;
+}
+.datepicker table th {
+	background:#fff;
+	color:#335678;
+}
+.datepicker table tr td.active:hover, .datepicker table tr td.active:hover:hover,
+.datepicker table tr td.active.disabled:hover, .datepicker table tr td.active.disabled:hover:hover,
+.datepicker table tr td.active:active, .datepicker table tr td.active:hover:active,
+.datepicker table tr td.active.disabled:active, .datepicker table tr td.active.disabled:hover:active,
+.datepicker table tr td.active.active, .datepicker table tr td.active.active:hover,
+.datepicker table tr td.active.disabled.active, .datepicker table tr td.active.disabled.active:hover,
+.datepicker table tr td.active.disabled, .datepicker table tr td.active.disabled:hover,
+.datepicker table tr td.active.disabled.disabled, .datepicker table tr td.active.disabled.disabled:hover,
+.datepicker table tr td.active[disabled], .datepicker table tr td.active[disabled]:hover,
+.datepicker table tr td.active.disabled[disabled], .datepicker table tr td.active.disabled[disabled]:hover {
+	background: #555;
 }
 
 
