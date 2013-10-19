@@ -3,8 +3,10 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 initiative_events = ->
-  $('#goto-sign-button').on 'click', ->
+  $('#goto-sign-button').on 'click', (e) ->
+    $('#signInitiative')[0].scrollIntoView()
     $('#signInitiative input[type=text]').first().focus()
+    e.preventDefault()
 
 
 $(document).on 'page:change', ->
