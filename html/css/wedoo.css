@@ -585,7 +585,10 @@ textarea,
 	border-radius: 2px;
 }
 /* Input Image */
-.input-file {position:relative;}
+.input-file {
+	position:relative;
+	height:34px;
+}
 .input-file input[type="file"] {
 	position:absolute;
 	z-index:2;
@@ -607,6 +610,16 @@ textarea,
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
     font-family:sans-serif;
     color:#555; 
+}
+/* wysiwyg */
+.wysihtml5-toolbar {
+	list-style:none;
+	padding-left:0;
+	background:#aaa;
+	margin-bottom:0;
+}
+.wysihtml5-toolbar .btn-default {
+	background:#aaa!important;
 }
 
 /* Errors */
