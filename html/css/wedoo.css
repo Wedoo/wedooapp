@@ -423,6 +423,7 @@ h1,h2,h3,h4,h5,h6 {
 	margin-bottom: 0.5em;
 	margin-top:0;
 	color:#555;
+	word-wrap:break-word;
 }
 h1,h2,h3, h4 {font-weight:bold;}
 h1 a,h2 a,h3 a,h4 a,h5 a,h6 a {color:#555555;}
@@ -457,6 +458,7 @@ table td {text-shadow:0 1px 0 #fff;}
 .well.statistics {
 	background:#ddd;
 	font-size:90%;
+	margin-bottom:30px;
 }
 .well.statistics hr {
 	border-top-color:#bbb;
@@ -468,7 +470,7 @@ table td {text-shadow:0 1px 0 #fff;}
 	padding-bottom:10px;
 }
 .actionBox > p {
-	margin:0 40px;
+	margin:0 65px 0 40px;
 	font-size:100%;
 	padding-top:7px;
 	text-shadow:0 1px 0 #fff;
@@ -537,11 +539,8 @@ i {margin-right:5px;}
 
 /* Twitter Container */
 .twitterContainer > h6 {
-	white-space: nowrap;
-	text-overflow: ellipsis;
 	width: 100%;
-	word-wrap: normal;
-	overflow: hidden;
+	word-wrap: break-word;
 }
 
 /* Edit Initiative */
@@ -568,11 +567,21 @@ i {margin-right:5px;}
 .politiciansContainer img {margin-right:10px;}
 .politiciansContainer h5, .politiciansContainer p {margin-bottom:0.1em;}
 .politiciansContainer .btn {margin:2px 0;}
-
 .btn.pull-right {margin-left:5px;}
+
+/* Signs List */
+table + .pagination {margin-top:0;}
+
 
 /* Forms
 ------------------------------------------------------------------*/
+input[type="submit"],
+input[type="text"],
+input[type="password"],
+select,
+textarea {
+	font-size:95%;
+}
 input[type="submit"],
 button, .btn,
 input[type="text"],
