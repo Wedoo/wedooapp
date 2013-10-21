@@ -1,0 +1,13 @@
+<%= simple_form_for(@initiative, form_options(@initiative)) do |f| %>
+
+	<%= f.input :title %>
+	<%= f.input :description, input_html: { class: :wysihtml5, rows: 15 } %>
+	<%= f.input :hashtag, wrapper: :prepend do %>
+    <%= content_tag :span, '#', class: 'input-group-addon' %>
+    <%= f.input_field :hashtag %>
+  <% end %>
+  <div class="actions">
+    <%= f.button :submit, @initiative.new_record? ? "Crear" : "Guardar", class: "btn-default" %>
+    <%= link_to "Cancelar", [ong, @initiative], class: "btn btn-link" %>
+  </div>
+<% end %>

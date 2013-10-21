@@ -14,4 +14,29 @@ module InitiativesHelper
     button.html_safe
   end
   
+  def form_options(initiative)
+    if initiative.new_record?
+      { url: ong_initiatives_path(ong) }
+    else
+      { url: ong_initiative_path(ong, initiative), method: :patch }
+    end
+  end
+  
+  def active_inactive(form, name)
+    value = form.object.send(name.to_sym)
+    out = capture do 
+      content_tag :label, class: ('btn btn-sm' + (value ? '' : ' active')) do
+        form.radio_button(name, false) + "inactivo"
+      end
+    end
+    out << capture do 
+      content_tag :label, class: ('btn btn-sm' + (value ? ' active' : '')) do
+        form.radio_button(name, true) + "activo"
+      end
+    end
+    content_tag :div, class: 'btn-group', data: { toggle: 'buttons' } do
+      out
+    end
+  end
+  
 end

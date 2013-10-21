@@ -9,6 +9,8 @@ class Initiative < ActiveRecord::Base
   # delegate :signs_count, to: :initiative_stat
   delegate :donations_count, to: :initiative_stat
   
+  validates :hashtag, format: { with: /\A[a-z][\w]*\Z/i }
+  
   def has_actions?
     signs_active || donations_active
   end

@@ -3,10 +3,20 @@ es:
     messages:
       rut_invalid: inválido
   activerecord:
+    errors:
+      models:
+        initiative:
+          attributes:
+            hashtag:
+              invalid: "debe tener sólo letras y números, y comenzar con una letra."
     attributes:
       user:
         email: E-mail
         password: Contraseña
+      initiative:
+        title: Título
+        description: Descripción
+        hashtag: Hashtag
       sign:
         first_name: Nombre
         last_name: Apellido

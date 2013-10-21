@@ -7,7 +7,14 @@ initiative_events = ->
     $('#signInitiative')[0].scrollIntoView()
     $('#signInitiative input[type=text]').first().focus()
     e.preventDefault()
-
+  $('.wysihtml5').each (i, elem) ->
+    $(elem).wysihtml5()
+  
+  $('form.active-inactive-form').each (i, elem) ->
+    $(this).on 'click', 'label', (e) ->
+      $this = $(this)
+      $this.trigger($this.parents('form').data('trigger'), $this.find('input').val())
+      e.preventDefault()
 
 $(document).on 'page:change', ->
   # wysihtml5
@@ -16,9 +23,11 @@ $(document).on 'page:change', ->
   # otros eventos relevantes
   initiative_events()
   
+$(document).on 'form:signs-active', (event, value) ->
+  $('#signs-activation-confirmation').modal()
+  
 $ ->
-  $('.wysihtml5').each (i, elem) ->
-    $(elem).wysihtml5()
+
   initiative_events()
   
 

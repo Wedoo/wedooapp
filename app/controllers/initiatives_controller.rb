@@ -1,5 +1,7 @@
 class InitiativesController < ApplicationController
   
+  before_action :set_initiative, only: [:show, :edit, :update]
+  
   def new
     @initiative = Initiative.new
   end
@@ -15,7 +17,6 @@ class InitiativesController < ApplicationController
   end
 
   def show
-    @initiative = Initiative.find(params[:id])
     @initiatives = Initiative.ong_by_actions(ong)
   end
 
@@ -23,6 +24,11 @@ class InitiativesController < ApplicationController
   end
 
   def update
+    if @initiative.update(initiative_params)
+      redirect_to ong_initiative_path(ong, @initiative), notice: "Iniciativa guardada exitosamente."
+    else
+      render action: 'edit'
+    end
   end
 
   def destroy
@@ -37,6 +43,10 @@ class InitiativesController < ApplicationController
   private
   def initiative_params
     params.require(:initiative).permit(:title, :description, :hashtag)
+  end
+  
+  def set_initiative
+    @initiative = Initiative.find(params[:id])
   end
   
 end

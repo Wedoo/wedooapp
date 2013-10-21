@@ -1,5 +1,31 @@
 <div class="row">
 	<div class="col-md-12">
+    <% if permitted_to? :update, :initiatives %>
+      <div class="well editInitiative">
+  			<p>
+          <%= link_to("Editar iniciativa", edit_ong_initiative_path(ong, @initiative), class: "btn btn-xs btn-default pull-right") %><strong>Administrar</strong></p>
+  			<hr />
+  			<div class="row">
+          <%= render 'active_inactive', icon_class: 'pencil', title: 'Firmas', object: @initiative, attribute: :signs_active, url: [ong, @initiative], event_name: 'form:signs-active' %>
+
+          <%= render layout: 'partials/modal_window', locals: { modal_id: "signs-activation-confirmation", title: "Firmas para tu iniciativa", ok_text: "Activar firmas", cancel_text: "Cancelar" } do %>
+          <% content_for :modal_footer do %>
+          <button type="button" class="btn btn-link" data-dismiss="modal">Jojo</button>
+          <button type="button" class="btn btn-default">Jaja</button>
+          <% end %>
+          <strong>¿Estás seguro de que quieres activar la recopilación de firmas para tu iniciativa?</strong>
+          <p>Esto creará un botón "Firmar" en tu iniciativa, instando a los visitantes a que se adhieran a ella.</p>
+          <p>Una vez que tengas adherentes podrás ver y descargar la lista de datos de los mismos.</p>
+          <% end %>
+          
+          
+          <%= render 'active_inactive', icon_class: 'money', title: 'Donaciones', object: @initiative, attribute: :donations_active, url: [ong, @initiative] %>
+          <%= render 'active_inactive', icon_class: 'group', title: 'Manifestación', object: @initiative, attribute: :protest_active, url: [ong, @initiative] %>
+          <%= render 'active_inactive', icon_class: 'comments', title: 'Spamear', object: @initiative, attribute: :spam_active, url: [ong, @initiative] %>
+  			</div>
+  		</div>
+    <% end %>
+    
 		<h1><%= @initiative.title %>
       <%= link_to facebook_url(@initiative), target: "_blank" do %>
         <i class="icon-facebook-sign"></i>

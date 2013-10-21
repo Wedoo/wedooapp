@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131018185222) do
+ActiveRecord::Schema.define(version: 20131019205803) do
 
   create_table "ads", force: true do |t|
     t.string   "type"
@@ -60,6 +60,8 @@ ActiveRecord::Schema.define(version: 20131018185222) do
     t.string   "image"
     t.boolean  "active",           default: true
     t.integer  "signs_count"
+    t.boolean  "protest_active"
+    t.boolean  "spam_active"
   end
 
   add_index "initiatives", ["active"], name: "index_initiatives_on_active", using: :btree
