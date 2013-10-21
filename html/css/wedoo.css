@@ -487,8 +487,16 @@ table td {text-shadow:0 1px 0 #fff;}
 }
 #signButton {background:#d3ecf3;}
 #signButton > i {background:#5bc0de;}
+.signTitle {color:#5bc0de;}
 #donateButton {background:#f8e3c4;}
 #donateButton > i {background:#f0ad4e;}
+.donateTitle {color:#f0ad4e;}
+#spamButton {background:#ccf8cc;}
+#spamButton > i {background:#5cb85c;}
+.spamTitle {color:#5cb85c;}
+#protestButton {background:#f9cfce;}
+#protestButton > i {background:#d9534f;}
+.protestTitle {color:#d9534f;}
 i {margin-right:5px;}
 
 /* Initiative List */
