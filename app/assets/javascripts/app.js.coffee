@@ -1,3 +1,5 @@
+$document = $(document)
+
 format_rut = (rut) ->
   clean_rut = rut.toUpperCase().replace(/[^\dK]/, '')
   return '' if clean_rut.length < 1
@@ -9,13 +11,16 @@ format_rut = (rut) ->
     i--
   result
 
-$(document).on 'change', 'input[data-validate~="rut"]', ->
+$document.on 'change', 'input[data-validate~="rut"]', ->
   $this = $(this)
   val = $this.val()
   $this.val(format_rut val)
   
   
-$(document).on 'click', 'a[data-twitter-sharer], a[data-facebook-sharer]', (e) ->
+$document.on 'click', 'a[data-twitter-sharer], a[data-facebook-sharer]', (e) ->
   service = if $(this).data('twitter-sharer') then 'twitter' else 'facebook'
   window.open( this.href, service, 'height=400,width=550,left=100,top=100,resizable=yes,location=no,status=no,toolbar=no' );
   e.preventDefault()
+  
+$document.on 'page:fetch', ->
+  $('#loading-indicator').animate({top: 0}, 300)

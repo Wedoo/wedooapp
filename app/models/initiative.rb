@@ -8,7 +8,8 @@ class Initiative < ActiveRecord::Base
   
   has_attached_file :image,
       styles: { medium: "300x300>", thumb: "80x80>" },
-      default_url: '/assets/placeholder.png'
+      default_url: '/assets/placeholder.png',
+      path: (Rails.env == 'development' ? ":rails_root/public/system/:class/:attachment/:id_partition/:style/:filename" : ":id/:style/:filename")
   
   scope :ong_by_actions, -> (ong) { where(ong: ong).order('donations_active OR signs_active DESC, created_at DESC') }
   scope :only_active, -> { where(active: true) }
