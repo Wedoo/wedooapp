@@ -46,6 +46,7 @@ gem 'nested_form'
 gem 'rut_validator'
 
 gem "paperclip", '~> 3.5.1'
+gem 'paperclip-dropbox'
 gem 'bootstrap-wysihtml5-rails', :require => 'bootstrap-wysihtml5-rails', :git => 'git://github.com/Nerian/bootstrap-wysihtml5-rails.git'
 
 group :development do
@@ -67,6 +68,7 @@ end
 group :production do
   gem 'rails_12factor'
   gem 'pg'
+  gem 'newrelic_rpm'
 end
 
 gem 'acts_as_relation', '~> 1.0'

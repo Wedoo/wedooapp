@@ -8,6 +8,7 @@ Wedoo::Application.routes.draw do
 
   resources :ongs, only: :show do
     resources :initiatives do
+      get 'toggle_signs_active', on: :member
       resources :signs, only: [:new, :create]
     end
     resources :paypal_apps    

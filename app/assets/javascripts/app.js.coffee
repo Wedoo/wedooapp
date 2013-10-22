@@ -1,4 +1,3 @@
-
 format_rut = (rut) ->
   clean_rut = rut.toUpperCase().replace(/[^\dK]/, '')
   return '' if clean_rut.length < 1
@@ -15,3 +14,8 @@ $(document).on 'change', 'input[data-validate~="rut"]', ->
   val = $this.val()
   $this.val(format_rut val)
   
+  
+$(document).on 'click', 'a[data-twitter-sharer], a[data-facebook-sharer]', (e) ->
+  service = if $(this).data('twitter-sharer') then 'twitter' else 'facebook'
+  window.open( this.href, service, 'height=400,width=550,left=100,top=100,resizable=yes,location=no,status=no,toolbar=no' );
+  e.preventDefault()

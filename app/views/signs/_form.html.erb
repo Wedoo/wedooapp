@@ -4,12 +4,7 @@
 <%= simple_form_for sign, url: ong_initiative_signs_path(ong, @initiative), remote: true do |f| %>
   <% if sign.errors.any? %>
     <div id="error_explanation">
-      <h2>Tienes los siguientes errores:</h2>
-      <ul>
-      <% sign.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+      <h4>Soluciona los siguientes errores para enviar tu firma:</h4>
     </div>
   <% end %>
   <% if @thankyou_message %>

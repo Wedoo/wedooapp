@@ -1,11 +1,8 @@
-<h1>Crea tu iniciativa</h1>
-
-<%= simple_form_for(@initiative, url: ong_initiatives_path(ong)) do |f| %>
-
-	<%= f.input :title %>
-	<%= f.input :description, input_html: { class: :wysihtml5, rows: 15 } %>
-	<%= f.input :hashtag %>
-  <div class="actions">
-    <%= f.button :submit, "Crear", class: "btn-default" %>
+<div class="row">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <div class="well clearfix">
+      <h1>Crea tu iniciativa</h1>
+      <%= render "form" %>      
+    </div>
   </div>
-<% end %>
+</div>
