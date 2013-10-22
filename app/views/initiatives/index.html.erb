@@ -8,6 +8,13 @@
 		<%= render partial: "initiative", collection: @initiatives %>
 	</div>
 	<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+    <% if permitted_to? :manage, :initiatives %>
+      <div class="textBox">
+        <%= link_to new_ong_initiative_path(ong), class: "btn btn-default btn-block" do %>
+          <i class="icon-plus-sign"></i> Crear nueva iniciativa
+        <% end %>
+      </div>
+    <% end %>
 		<div class="textBox">
 			<h6><i class="icon-time"></i>Iniciativas pasadas</h6>
 			<div class="list-group">

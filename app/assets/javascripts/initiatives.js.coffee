@@ -4,16 +4,18 @@
 
 initiative_events = ->
   $('#goto-sign-button').on 'click', (e) ->
+    $('#signInitiative input').removeAttr("disabled")
     $('#signInitiative')[0].scrollIntoView()
-    $('#signInitiative input[type=text]').first().focus()
+    $('#signInitiative input[type=text], #signInitiative input[type=email]').val("").first().focus()
     e.preventDefault()
   $('.wysihtml5').each (i, elem) ->
     $(elem).wysihtml5()
   
   $('form.active-inactive-form').each (i, elem) ->
     $(this).on 'click', 'label', (e) ->
+      return if $(this).hasClass("active")
       $this = $(this)
-      $this.trigger($this.parents('form').data('trigger'), $this.find('input').val())
+      $this.trigger($this.parents('form').data('trigger'), $this.find('input'))
       e.preventDefault()
 
 $(document).on 'page:change', ->
@@ -23,8 +25,16 @@ $(document).on 'page:change', ->
   # otros eventos relevantes
   initiative_events()
   
-$(document).on 'form:signs-active', (event, value) ->
-  $('#signs-activation-confirmation').modal()
+$(document).on 'form:signs-active', (event, input) ->
+  $input = $(input)
+  value = $input.val()
+  $elem = if (value == "true") then $('#signs-activation-confirmation') else $('#signs-deactivation-confirmation')
+  $cancel = $elem.find('button.cancel')
+  unless $cancel.data("handler")
+    $cancel.data("handler", true).on 'click', ->
+      i = $input.parent().index()
+      $input.parents("div.btn-group").children().eq(1 - i).button("toggle")
+  $elem.modal()
   
 $ ->
 

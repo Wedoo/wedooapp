@@ -5,19 +5,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h4 class="modal-title"><%= title %></h4>
       </div>
-      <%= form_for ong do |f| %>
-      <div class="modal-body">
-        <%= yield %>
-      </div>
-      <div class="modal-footer">
-        <% if content_for? :modal_footer %>
-          <%= yield :modal_footer  %>
-        <% else %>  
-          <button type="button" class="btn btn-link" data-dismiss="modal"><%= defined?(cancel_text) ? cancel_text : "Cancelar" %></button>
-          <button type="button" class="btn btn-default"><%= defined?(ok_text) ? ok_text : "Guardar" %></button>
-        <% end %>
-      </div>
-      <% end %>
+      <%= yield %>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 <% end %>

@@ -1,6 +1,8 @@
 class InitiativesController < ApplicationController
   
-  before_action :set_initiative, only: [:show, :edit, :update]
+  filter_access_to [:new, :create, :edit, :update, :destroy], require: :manage
+  
+  before_action :set_initiative, only: [:show, :edit, :update, :destroy]
   
   def new
     @initiative = Initiative.new
@@ -13,11 +15,13 @@ class InitiativesController < ApplicationController
     if @initiative.save
       flash.notice = "Iniciativa creada exitosamente"
       redirect_to ong_initiative_path(ong, @initiative)
+    else
+      render :new, alert: "Error al crear la iniciativa. Por favor, inténtalo de nuevo."
     end
   end
 
   def show
-    @initiatives = Initiative.ong_by_actions(ong)
+    @initiatives = Initiative.ong_by_actions(ong).only_active.limit(10)
   end
 
   def edit
@@ -32,6 +36,11 @@ class InitiativesController < ApplicationController
   end
 
   def destroy
+    @initiative.destroy
+    respond_to do |format|
+      format.html { redirect_to ong_initiatives_path(ong) }
+      format.json { head :no_content }
+    end
   end
 
   def index
@@ -39,10 +48,17 @@ class InitiativesController < ApplicationController
     @past_initiatives = Initiative.where(ong: ong, active: false).limit(10)
   end
   
+  def toggle_signs_active
+    set_initiative
+    @initiative.signs_active = !@initiative.signs_active
+    @initiative.save
+    redirect_to [ong, @initiative]
+  end
+  
   
   private
   def initiative_params
-    params.require(:initiative).permit(:title, :description, :hashtag)
+    params.require(:initiative).permit(:title, :description, :hashtag, :image, :active)
   end
   
   def set_initiative

@@ -15,10 +15,11 @@ module InitiativesHelper
   end
   
   def form_options(initiative)
+    base = { html: { multipart: true } }
     if initiative.new_record?
-      { url: ong_initiatives_path(ong) }
+      base.merge({ url: ong_initiatives_path(ong) })
     else
-      { url: ong_initiative_path(ong, initiative), method: :patch }
+      base.merge({ url: ong_initiative_path(ong, initiative), method: :patch })
     end
   end
   

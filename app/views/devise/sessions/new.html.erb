@@ -1,13 +1,20 @@
-<h2>Ingresa con tu cuenta</h2>
-<div class="col-xs-12 col-sm-6 col-md-8 col-lg-8">
-  <%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-    <%= f.input :email, :required => false, :autofocus => true %>
-    <%= f.input :password, :required => false %>
-    <%= f.input :remember_me, :as => :boolean if devise_mapping.rememberable? %>
-    <div class="actions">
-      <%= f.button :submit, "Ingresa", class: 'btn-default' %>    
+<div class="row">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <div class="well clearfix">
+      <h2>Ingresa con tu cuenta</h2>
+      <%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+        <%= f.input :email, required: false, autofocus: true %>
+        <%= f.input :password, required: false %>
+        <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+        <div class="actions">
+          <%= f.submit "Ingresa", class: 'btn btn-default' %>    
+          <%= render "devise/shared/links" %>  
+        </div>
+      <% end %>
     </div>
-  <% end %>
-
-  <%= render "devise/shared/links" %>  
+  </div>
 </div>
+
+
+
+

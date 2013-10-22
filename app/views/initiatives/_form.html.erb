@@ -1,13 +1,18 @@
 <%= simple_form_for(@initiative, form_options(@initiative)) do |f| %>
 
 	<%= f.input :title %>
+  <%= f.input :active, label: false do %>
+     <%= f.label :active %> <%= f.check_box :active %>
+  <% end %>
 	<%= f.input :description, input_html: { class: :wysihtml5, rows: 15 } %>
+  <%= f.input :image %>
 	<%= f.input :hashtag, wrapper: :prepend do %>
     <%= content_tag :span, '#', class: 'input-group-addon' %>
-    <%= f.input_field :hashtag %>
+    <%= f.input_field :hashtag, placeholder: "Hashtag para difundir en Twitter" %>
   <% end %>
   <div class="actions">
-    <%= f.button :submit, @initiative.new_record? ? "Crear" : "Guardar", class: "btn-default" %>
+    <%= link_to("Eliminar esta iniciativa", [ong, @initiative], method: :delete, class: "btn btn-danger btn-sm pull-right", confirm: "¿Está seguro de eliminar esta iniciativa? No podrá recuperarla.") unless @initiative.new_record? %>
+    <%= f.button :submit, @initiative.new_record? ? "Crear" : "Actualizar", class: "btn-default" %>
     <%= link_to "Cancelar", [ong, @initiative], class: "btn btn-link" %>
   </div>
 <% end %>

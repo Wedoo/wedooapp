@@ -1,7 +1,8 @@
 <div class="well initiativeList<%= " action" if initiative.has_actions? %> clearfix">
 	<%= link_to ong_initiative_path(ong, initiative), title: initiative.title do %>
 		<i class="icon-chevron-right icon-2x"></i>
-		<%= image_tag initiative.image.blank? ? "placeholder.png" : initiative.image, alt: "Logo", title: initiative.title, class: "pull-left" %>
+		<%#= image_tag initiative.image.blank? ? "placeholder.png" : initiative.image, alt: "Logo", title: initiative.title, class: "pull-left" %>
+    <%= image_tag initiative.image.url(:thumb), alt: "Logo", title: initiative.title, class: "pull-left" %>
 		<h2><%= initiative.title %></h2>
 	<% end %>
 </div>

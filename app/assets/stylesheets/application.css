@@ -13,6 +13,7 @@
  *= require bootstrap-wysihtml5/b3
  *= require wedoo
  *= require ed2020
+ *= require initiatives
  *= require_self
  * require_tree .
  */
