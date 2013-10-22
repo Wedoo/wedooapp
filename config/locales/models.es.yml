@@ -3,10 +3,27 @@ es:
     messages:
       rut_invalid: inválido
   activerecord:
+    errors:
+      models:
+        initiative:
+          attributes:
+            hashtag:
+              invalid: "debe tener sólo letras y números, y comenzar con una letra."
+        sign:
+          attributes:
+            email:
+              taken: "ya tenemos una firma con este email"
+            identifier:
+              taken: "ya tenemos una firma con este RUT"
     attributes:
       user:
         email: E-mail
         password: Contraseña
+      initiative:
+        title: Título
+        active: Activa
+        description: Descripción
+        hashtag: Hashtag
       sign:
         first_name: Nombre
         last_name: Apellido

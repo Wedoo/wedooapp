@@ -77,4 +77,12 @@ Wedoo::Application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+  
+  Paperclip.options[:command_path] = '/usr/bin/'
+  config.paperclip_defaults = {
+    storage: :dropbox,
+    dropbox_credentials: Rails.root.join("config/dropbox.yml"),
+    dropbox_options: {},
+    path: ":id/:style/:filename"
+  }
 end
