@@ -7,7 +7,7 @@
 	<meta name="description" content="">
 	<meta name="keywords" content="">
 	<meta name="author" content="wedoo">
-  <title>Educación 2020</title>
+  <title>wedoo - Educación 2020</title>
 	<!--[if lt IE 9]>
 			<script src="js/html5shiv.js"></script>
 		<![endif]-->
@@ -18,6 +18,7 @@
 <body>
 	
 	<div id="container">
+    <div id="loading-indicator"><div id="loading-indicator-content">Cargando...</div></div>
 		
 		<!-- NavBar -->
 		<div class="navbar navbar-inverse">
@@ -72,11 +73,10 @@
 				</nav>
 			</div>
 		</header>
-
 		<% unless flash.empty? %>
 	    <div class="alerts">
 	      <% flash.each do |name, msg| %>
-          <% next unless name == 'dismissable' %>
+          <% next if name == 'dismissable' %>
 	        <div class="alert <%= alert_classes name %> alert-dismissable">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
             <%= msg %>
