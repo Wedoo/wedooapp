@@ -31,9 +31,4 @@ Wedoo::Application.configure do
   
   Paperclip.options[:command_path] = '/usr/local/bin/'
   
-  config.paperclip_defaults = {
-    # storage: :dropbox,
-    # dropbox_credentials: Rails.root.join("config/dropbox.yml"),
-    # dropbox_options: {}
-  }
 end
