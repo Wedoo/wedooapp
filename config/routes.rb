@@ -10,8 +10,12 @@ Wedoo::Application.routes.draw do
     resources :initiatives do
       get 'toggle_signs_active', on: :member
       resources :signs, only: [:new, :create, :index]
+      resources :donations do 
+        get 'thanks', on: :collection
+        get 'no_thanks', on: :collection
+      end
     end
-    resources :paypal_apps    
+    resources :paypal_apps
   end
 
 

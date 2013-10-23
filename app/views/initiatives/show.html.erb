@@ -61,7 +61,7 @@
       <% end %>
       <% if @initiative.donations_active %>
     		<div id="donateButton" class="well clearfix actionBox">
-    			<a href="#" class="pull-right btn btn-warning">Dona</a>
+    			<span href="#" class="pull-right"><%= donation_button %></span>
     			<i class="pull-left icon-bullhorn"></i>
     			<p>Con tu ayuda podríamos llegar a <%= @initiative.signs_count + 2000 %> personas</p>
     		</div>
@@ -80,12 +80,11 @@
       		<p>Marcha en favor de la iniciativa</p>
       	</div>
       <% end %>
-    
     <% end %>
 		<div class="textBox">
 			<%= @initiative.description.html_safe %>
 		</div>
-		<%#= donation_button %>
+<!-- 		<%= donation_button %> -->
 		<div class="well statistics">
 			<h6><i class="icon-bar-chart"></i>Estadísticas de esta iniciativa</h6>
 			<hr>

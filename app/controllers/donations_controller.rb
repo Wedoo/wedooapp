@@ -1,6 +1,6 @@
 class DonationsController < ApplicationController
   before_action :set_donation, only: [:show, :edit, :update, :destroy]
-
+  protect_from_forgery except: :create
   # GET /donations
   # GET /donations.json
   def index
@@ -21,20 +21,43 @@ class DonationsController < ApplicationController
   def edit
   end
 
+  def thanks
+
+    redirect_to ong_initiative_path(ong, params[:initiative_id]) + "#gracias"
+
+  end
+
+  def no_thanks
+
+     redirect_to ong_initiative_path(ong, params[:initiative_id]) + "#tryagainplease"
+  end
+
   # POST /donations
   # POST /donations.json
   def create
-    @donation = Donation.new(donation_params)
-
-    respond_to do |format|
-      if @donation.save
-        format.html { redirect_to @donation, notice: 'Donation was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @donation }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @donation.errors, status: :unprocessable_entity }
-      end
+    amount=params[:payment_gross].to_d - params[:mc_fee].to_d
+    if(params[:payment_status]=="Completed")
+       @donation = Donation.new(
+        :initiative_id => params[:initiative_id].to_i,
+        :payment_service_name => "PayPal",
+        :amount =>amount
+       )
+       if @donation.save
+          render nothing: true, status: :ok
+       else
+          render nothing: true, status: :internal_server_error
+       end
     end
+
+    # respond_to do |format|
+    #   if @donation.save
+    #     format.html { redirect_to @donation, notice: 'Donation was successfully created.' }
+    #     format.json { render action: 'show', status: :created, location: @donation }
+    #   else
+    #     format.html { render action: 'new' }
+    #     format.json { render json: @donation.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   # PATCH/PUT /donations/1
@@ -69,6 +92,6 @@ class DonationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def donation_params
-      params.require(:donation).permit(:initiative_id, :paymentaccount_id, :amount)
+      params.require(:donation).permit(:initiative_id, :payment_service_name, :amount)
     end
 end
