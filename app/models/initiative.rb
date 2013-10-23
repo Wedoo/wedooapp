@@ -11,7 +11,7 @@ class Initiative < ActiveRecord::Base
       default_url: '/assets/placeholder.png',
       path: (Rails.env == 'development' ? ":rails_root/public/system/:class/:attachment/:id_partition/:style/:filename" : ":id/:style/:filename"),
       dropbox_options: {
-        path: proc { |style| "#{style}/#{id}_#{image.original_filename}" }
+        path: proc { |style| "#{style}/initiative_#{id}/#{image.original_filename}" }
       }
   
   scope :ong_by_actions, -> (ong) { where(ong: ong).order('donations_active OR signs_active DESC, created_at DESC') }
