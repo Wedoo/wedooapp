@@ -94,7 +94,7 @@ initiative4 = Initiative.create do |i|
   En estos momentos se está discutiendo en el Parlamento un proyecto de ley que crea un examen que certifica la calidad de los nuevos profesores. Sin embargo, esta prueba no sería obligatoria y no tendría ninguna consecuencia para esas Universidades e Institutos Profesionales que obtienen malos resultados.<br><br>Queremos que esto cambie: la prueba debe ser obligatoria, tal como pasa en otras profesiones como Leyes y Medicina; también debe medir conocimientos y la capacidad que tienen los futuros profesores de enseñar, y si una Universidad o Instituto Profesional no obtiene un nivel mínimo debe responsabilizarse por ello.<br><br>Políticos de distintos sectores se han mostrado de acuerdo con estas iniciativas, pero todavía no se hace nada concreto para cambiar. Por eso te invitamos a sumarte a esta campaña y decir de una vez por todas: NO + al negociado con las carreras de Pedagogía.
   </div>
   EOF
-  i.hashtag = "NoMásNegociadoConEscuelasDePedagogía"
+  i.hashtag = "NoMasNegociadoConEscuelasDePedagogia"
   i.active = false
   i.signs_active = false
   i.donations_active = false
