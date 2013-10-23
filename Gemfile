@@ -57,6 +57,7 @@ group :development do
   gem 'quiet_assets'
   gem 'awesome_print'
   gem 'mysql2'
+  gem 'debugger'
 end
 
 group :test do

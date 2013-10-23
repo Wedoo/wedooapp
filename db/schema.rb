@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131018185222) do
+ActiveRecord::Schema.define(version: 20131019221346) do
 
   create_table "ads", force: true do |t|
     t.string   "type"
@@ -27,14 +27,14 @@ ActiveRecord::Schema.define(version: 20131018185222) do
 
   create_table "donations", force: true do |t|
     t.integer  "initiative_id"
-    t.integer  "paymentaccount_id"
-    t.integer  "amount"
+    t.string   "payment_service_name",                         default: "PayPal"
+    t.decimal  "amount",               precision: 6, scale: 2, default: 0.0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "donations", ["initiative_id"], name: "index_donations_on_initiative_id", using: :btree
-  add_index "donations", ["paymentaccount_id"], name: "index_donations_on_paymentaccount_id", using: :btree
+  add_index "donations", ["payment_service_name"], name: "index_donations_on_payment_service_name", using: :btree
 
   create_table "initiative_stats", force: true do |t|
     t.integer  "signs_count"
@@ -105,7 +105,7 @@ ActiveRecord::Schema.define(version: 20131018185222) do
     t.string   "signature"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "mode"
+    t.integer  "mode",          default: 0
   end
 
   create_table "related_links", force: true do |t|

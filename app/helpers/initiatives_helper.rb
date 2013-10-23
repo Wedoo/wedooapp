@@ -9,7 +9,13 @@ module InitiativesHelper
   end
   
   def donation_button
-    button_response = Donation.create_donate_button(10, 'http://localhost', 'http://localshot')
+  
+    button_response = @initiative.ong.get_paypal.create_donate_button(
+      :amount=>10, 
+      :return_url=> thanks_ong_initiative_donations_url(@ong, @initiative), 
+      :notify_url => ong_initiative_donations_url(@ong, @initiative),
+      :cancel_return =>no_thanks_ong_initiative_donations_url(@ong, @initiative)
+    )
     button = button_response.success? ? button_response.Website : button_response.Errors
     button.html_safe
   end

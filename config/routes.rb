@@ -9,8 +9,13 @@ Wedoo::Application.routes.draw do
   resources :ongs, only: :show do
     resources :initiatives do
       resources :signs, only: [:new, :create]
+      resources :donations do 
+        get 'thanks', on: :collection
+        get 'no_thanks', on: :collection
+      end   
     end
-    resources :paypal_apps    
+    resources :paypal_apps
+
   end
 
 

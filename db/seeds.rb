@@ -104,3 +104,16 @@ initiative4 = Initiative.create do |i|
   i.ong = ong
   i.initiative_stat = InitiativeStat.new(signs_count: 103, donations_count: 13, donations_amount: 53, conversions_count: 23)
 end
+ap "asdasd"
+paypal_app=PaypalApp.create do |pa|
+  pa.active= true
+  pa.mode= 0
+  pa.client_id="AU_1nxCKaikf7bSSqyxucNuBDOL4ZKtL5T_mHIRf_oEaDVdKAgLp5Nf4Rvnz" 
+  pa.client_secret="EL6U0RCWfDs-RKtP7HJ9_GDs0MF2SX_fayOxbkjKJfddQ7rkr8-MpuNT2mr7" 
+  pa.username="danielbc+paypal1_api1.gmail.com" 
+  pa.app_id="APP-80W284485P519543T" 
+  pa.password="1381891309" 
+  pa.signature="AFcWxV21C7fd0v3bYYYRCpSSRl31AdYNqT0chXyCBMwAG0TG9--VJZxP"
+  pa.ong=ong
+end
+ap "asdasd2"
