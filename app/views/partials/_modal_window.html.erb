@@ -1,4 +1,4 @@
-<%= content_tag :div, class: 'modal fade', id: (defined?(modal_id) ? modal_id : nil) do %>
+<%= content_tag :div, class: 'modal fade', id: (defined?(modal_id) ? modal_id : nil), data: { backdrop: 'static' } do %>
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">

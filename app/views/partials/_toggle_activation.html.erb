@@ -1,0 +1,10 @@
+<%= simple_form_for object, url: "javascript:void(0)", html: { autocomplete: :off, class: "active-inactive-form", data: { trigger: event_name } } do |f| %>
+  <div class="btn-group" data-toggle="buttons">
+    <%= f.label attribute, class: "btn btn-default btn-sm#{value ? "" : " active"}" do %>
+      <%= f.radio_button(attribute, false) + "inactivo" %>
+    <% end %>
+    <%= f.label attribute, class: "btn btn-default btn-sm#{value ? " active" : ""}" do %>
+      <%= f.radio_button(attribute, false) + "activo" %>
+    <% end %>
+  </div>
+<% end %>

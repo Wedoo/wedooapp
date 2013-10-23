@@ -36,6 +36,11 @@ gem 'declarative_authorization'
 
 # bootstrap 3
 gem 'bootstrap-sass', git: 'https://github.com/thomas-mcdonald/bootstrap-sass', branch: '3'
+
+# paginación
+gem 'kaminari'
+gem 'kaminari-bootstrap', git: 'https://github.com/mcasimir/kaminari-bootstrap.git'
+
 # gem 'font-awesome-sass-rails', '~> 3.0.2.2'
 gem "font-awesome-rails"
 
@@ -58,6 +63,7 @@ group :development do
   gem 'quiet_assets'
   gem 'awesome_print'
   gem 'mysql2'
+  gem 'debugger'
 end
 
 group :test do
@@ -70,6 +76,10 @@ group :production do
   gem 'pg'
   gem 'newrelic_rpm'
 end
+
+# usemos un servidor web decente...
+gem 'foreman'
+gem 'puma'
 
 gem 'acts_as_relation', '~> 1.0'
 

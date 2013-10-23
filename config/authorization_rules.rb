@@ -5,6 +5,7 @@ authorization do
   role :ong do
     includes :guest
     has_permission_on :initiatives, to: [:manage]
+    has_permission_on :signs, to: [:manage]
   end
   
   role :admin do

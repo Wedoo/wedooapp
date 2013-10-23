@@ -1,0 +1,60 @@
+<div class="row">
+  <div class="col-md-12">
+    <%= link_to [ong, @initiative], class: "btn btn-default btn-sm pull-right" do %>
+      <i class="icon-circle-arrow-left"></i>Volver a la iniciativa
+    <% end %>
+    <h1><%= @initiative.title %></h1>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12 col-sm-6 col-md-8 col-lg-8">
+    <div class="well statistics">
+      <h6>
+        <i class="icon-bar-chart"></i>
+        Estadisticas de Firmas
+      </h6>
+      <hr />
+      <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4"><i class="icon-pencil"></i><strong><%= @initiative.signs_count || 0 %></strong> firmas</div>
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4"><i class="icon-eye-open"></i><strong>1068</strong> visitas</div>
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4"><i class="icon-calendar"></i><strong><%= l @initiative.created_at.to_date, format: :default %></strong> publicado</div>
+      </div>
+    </div>
+    <div class="textBox">
+      <% if @signs.count > 0 %>
+        <%= link_to ong_initiative_signs_path(ong, @initiative, format: :csv), class: "btn btn-default btn-sm pull-right" do %>
+          <i class="icon-download"></i>Descargar lista
+        <% end %>
+      <% end %>
+      <h3>Lista de firmantes</h3>
+      <% if @signs.count > 0 %>
+        <table class="table table-bordered table-striped table-hover">
+          <thead>
+  					<tr>
+  						<th>Nombre</th>
+  						<th>Apellido</th>
+  						<th>Rut</th>
+  						<th>Correo</th>
+  					</tr>
+  				</thead>
+          <tbody>
+            <% @signs.each do |sign| %>
+              <tr>
+    						<td><%= sign.first_name %></td>
+    						<td><%= sign.last_name %></td>
+    						<td><%= sign.identifier %></td>
+    						<td><%= sign.email %></td>
+    					</tr>
+            <% end %>
+          </tbody>
+        </table>
+        <%= paginate @signs %>
+      <% else %>
+        <p>Esta iniciativa aún no tiene firmas.</p>
+      <% end %>  
+    </div>
+  </div>
+  <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+    
+  </div>
+</div>

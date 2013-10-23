@@ -85,4 +85,8 @@ Wedoo::Application.configure do
     dropbox_options: {},
     path: ":id/:style/:filename"
   }
+
+  config.action_controller.default_url_options = {
+    :host => "educacion2020.herokuapp.com"
+  }
 end

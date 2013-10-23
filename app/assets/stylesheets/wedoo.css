@@ -485,16 +485,16 @@ table td {text-shadow:0 1px 0 #fff;}
 	width:52px;
 	line-height:30px;
 }
-#signButton {background:#d3ecf3;}
+#signButton, .signHeader {background:#d3ecf3;}
 #signButton > i {background:#5bc0de;}
-.signTitle {color:#5bc0de;}
-#donateButton {background:#f8e3c4;}
+.signTitle {color:#4bafcd;}
+#donateButton, .donateHeader {background:#f9ead5;}
 #donateButton > i {background:#f0ad4e;}
-.donateTitle {color:#f0ad4e;}
-#spamButton {background:#ccf8cc;}
+.donateTitle {color:#e5982c;}
+#spamButton, .spamHeader {background:#ccf8cc;}
 #spamButton > i {background:#5cb85c;}
-.spamTitle {color:#5cb85c;}
-#protestButton {background:#f9cfce;}
+.spamTitle {color:#4da74d;}
+#protestButton, .protestHeader {background:#f9cfce;}
 #protestButton > i {background:#d9534f;}
 .protestTitle {color:#d9534f;}
 i {margin-right:5px;}
@@ -555,12 +555,14 @@ i {margin-right:5px;}
 .editInitiative p {margin-bottom:5px;}
 .editInitiative hr {margin:8px 0;}
 .editInitiative .btn-group {border:1px solid #ddd;}
-.editInitiative .btn-group label.btn {background:#eee;}
-.editInitiative .btn-group label.btn.active {background:#f6c8b7; color:#333;}
-.editInitiative .btn-group label.btn + label.btn.active {background:#d2eaa7;}
+.editInitiative label.btn {text-shadow:none;}
+.editInitiative label.btn-default {background:#eee; color:#999;}
+.editInitiative label.btn-default:hover {background:#f6f6f6; color:#666;}
+.editInitiative label.btn-default.active {background:#f6c8b7; color:#333;}
+.editInitiative label.btn-default + label.btn.active {background:#d2eaa7;}
 @media (max-width: 767px) {
 	.editInitiative .row div {
-		height:30px;
+		min-height:30px;
 		margin-bottom:5px;
 	}
 	.editInitiative .row div .btn-group {
@@ -588,6 +590,14 @@ i {margin-right:5px;}
 /* Signs List */
 table + .pagination {margin-top:0;}
 
+/* Modals */
+.modal-header {
+	-webkit-border-radius:6px 6px 0 0;
+	-moz-border-radius:6px 6px 0 0;
+	border-radius:6px 6px 0 0;
+}
+.modal-body .row {margin-bottom:10px;}
+.modal-body h6 {margin-top:30px; font-size:110%; color:#333;}
 
 /* Forms
 ------------------------------------------------------------------*/
