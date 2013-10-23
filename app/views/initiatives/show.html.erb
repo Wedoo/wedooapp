@@ -1,24 +1,30 @@
-<%= render layout: 'partials/modal_window', locals: { modal_id: "signs-activation-confirmation", title: "Firmas para tu iniciativa" } do %>
+<%= modal_window id: 'signs-activation-confirmation', data: { backdrop: 'static'} do %>
+  <div class="modal-header signHeader">
+  	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+  	<h5 class="modal-title signTitle"><i class="icon-pencil"></i>Activar Firmas</h5>
+  </div>
   <div class="modal-body">
-    <strong>¿Estás seguro de que quieres activar la recopilación de firmas para tu iniciativa?</strong>
-    <p>Esto creará un botón "Firmar" en tu iniciativa, instando a los visitantes a que se adhieran a ella.</p>
+    <p>Se creará un botón "Firmar" en tu iniciativa, instando a los visitantes a que se adhieran a ella con el formulario que aparecerá en la parte inferior.</p>
     <p>Una vez que tengas adherentes podrás ver y descargar la lista de datos de los mismos.</p>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-link cancel" data-dismiss="modal">Cancelar</button>
-    <%= link_to "Activar", toggle_signs_active_ong_initiative_path(ong, @initiative), class: "btn btn-default confirm" %>
-  </div>            
+		<button type="button" class="btn btn-link cancel" data-dismiss="modal">Cancelar</button>
+    <%= link_to "Confirmar", toggle_signs_active_ong_initiative_path(ong, @initiative), class: "btn btn-info confirm" %>
+	</div>
 <% end %>
 
-<%= render layout: 'partials/modal_window', locals: { modal_id: "signs-deactivation-confirmation", title: "Firmas para tu iniciativa" } do %>
+<%= modal_window id: 'signs-deactivation-confirmation', data: { backdrop: 'static'} do %>
+  <div class="modal-header signHeader">
+  	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+  	<h5 class="modal-title signTitle"><i class="icon-pencil"></i>Activar Firmas</h5>
+  </div>
   <div class="modal-body">
-    <strong>¿Estás seguro de que quieres desactivar la recopilación de firmas para tu iniciativa?</strong>
     <p>Los potenciales adherentes ya no podrán demostrar su interés por tu iniciativa.</p>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-link cancel" data-dismiss="modal">Cancelar</button>
-    <%= link_to "Desactivar", toggle_signs_active_ong_initiative_path(ong, @initiative), class: "btn btn-default confirm" %>
-  </div>
+		<button type="button" class="btn btn-link cancel" data-dismiss="modal">Cancelar</button>
+    <%= link_to "Confirmar", toggle_signs_active_ong_initiative_path(ong, @initiative), class: "btn btn-info confirm" %>
+	</div>
 <% end %>
 
 
@@ -30,10 +36,10 @@
           <%= link_to("Editar iniciativa", edit_ong_initiative_path(ong, @initiative), class: "btn btn-xs btn-default pull-right") %><strong>Administrar</strong></p>
   			<hr />
   			<div class="row">
-          <%= render 'active_inactive', icon_class: 'pencil', title: 'Firmas', object: @initiative, attribute: :signs_active, url: [ong, @initiative], event_name: 'form:signs-active' %>          
-          <%= render 'active_inactive', icon_class: 'money', title: 'Donaciones', object: @initiative, attribute: :donations_active, url: [ong, @initiative] %>
-          <%= render 'active_inactive', icon_class: 'group', title: 'Manifestación', object: @initiative, attribute: :protest_active, url: [ong, @initiative] %>
-          <%= render 'active_inactive', icon_class: 'comments', title: 'Spamear', object: @initiative, attribute: :spam_active, url: [ong, @initiative] %>
+          <%= render 'active_inactive', icon_class: 'pencil', title: 'Firmas', object: @initiative, attribute: :signs_active, options: { event_name: 'form:signs-active' } %>
+          <%= render 'active_inactive', icon_class: 'money', title: 'Donaciones', object: @initiative, attribute: :donations_active, options: {} %>
+          <%= render 'active_inactive', icon_class: 'group', title: 'Manifestación', object: @initiative, attribute: :protest_active, options: {} %>
+          <%= render 'active_inactive', icon_class: 'comments', title: 'Spamear', object: @initiative, attribute: :spam_active, options: {} %>
   			</div>
   		</div>
     <% end %>
