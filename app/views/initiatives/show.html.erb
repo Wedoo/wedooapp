@@ -1,3 +1,27 @@
+<%= render layout: 'partials/modal_window', locals: { modal_id: "signs-activation-confirmation", title: "Firmas para tu iniciativa" } do %>
+  <div class="modal-body">
+    <strong>¿Estás seguro de que quieres activar la recopilación de firmas para tu iniciativa?</strong>
+    <p>Esto creará un botón "Firmar" en tu iniciativa, instando a los visitantes a que se adhieran a ella.</p>
+    <p>Una vez que tengas adherentes podrás ver y descargar la lista de datos de los mismos.</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-link cancel" data-dismiss="modal">Cancelar</button>
+    <%= link_to "Activar", toggle_signs_active_ong_initiative_path(ong, @initiative), class: "btn btn-default confirm" %>
+  </div>            
+<% end %>
+
+<%= render layout: 'partials/modal_window', locals: { modal_id: "signs-deactivation-confirmation", title: "Firmas para tu iniciativa" } do %>
+  <div class="modal-body">
+    <strong>¿Estás seguro de que quieres desactivar la recopilación de firmas para tu iniciativa?</strong>
+    <p>Los potenciales adherentes ya no podrán demostrar su interés por tu iniciativa.</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-link cancel" data-dismiss="modal">Cancelar</button>
+    <%= link_to "Desactivar", toggle_signs_active_ong_initiative_path(ong, @initiative), class: "btn btn-default confirm" %>
+  </div>
+<% end %>
+
+
 <div class="row">
 	<div class="col-md-12">
     <% if permitted_to? :update, :initiatives %>
@@ -6,32 +30,7 @@
           <%= link_to("Editar iniciativa", edit_ong_initiative_path(ong, @initiative), class: "btn btn-xs btn-default pull-right") %><strong>Administrar</strong></p>
   			<hr />
   			<div class="row">
-          <%= render 'active_inactive', icon_class: 'pencil', title: 'Firmas', object: @initiative, attribute: :signs_active, url: [ong, @initiative], event_name: 'form:signs-active' %>
-
-          <%= render layout: 'partials/modal_window', locals: { modal_id: "signs-activation-confirmation", title: "Firmas para tu iniciativa" } do %>
-            <div class="modal-body">
-              <strong>¿Estás seguro de que quieres activar la recopilación de firmas para tu iniciativa?</strong>
-              <p>Esto creará un botón "Firmar" en tu iniciativa, instando a los visitantes a que se adhieran a ella.</p>
-              <p>Una vez que tengas adherentes podrás ver y descargar la lista de datos de los mismos.</p>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-link cancel" data-dismiss="modal">Cancelar</button>
-              <%= link_to "Activar", toggle_signs_active_ong_initiative_path(ong, @initiative), class: "btn btn-default confirm" %>
-            </div>            
-          <% end %>
-          
-          <%= render layout: 'partials/modal_window', locals: { modal_id: "signs-deactivation-confirmation", title: "Firmas para tu iniciativa" } do %>
-            <div class="modal-body">
-              <strong>¿Estás seguro de que quieres desactivar la recopilación de firmas para tu iniciativa?</strong>
-              <p>Los potenciales adherentes ya no podrán demostrar su interés por tu iniciativa.</p>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-link cancel" data-dismiss="modal">Cancelar</button>
-              <%= link_to "Desactivar", toggle_signs_active_ong_initiative_path(ong, @initiative), class: "btn btn-default confirm" %>
-            </div>
-          <% end %>
-          
-          
+          <%= render 'active_inactive', icon_class: 'pencil', title: 'Firmas', object: @initiative, attribute: :signs_active, url: [ong, @initiative], event_name: 'form:signs-active' %>          
           <%= render 'active_inactive', icon_class: 'money', title: 'Donaciones', object: @initiative, attribute: :donations_active, url: [ong, @initiative] %>
           <%= render 'active_inactive', icon_class: 'group', title: 'Manifestación', object: @initiative, attribute: :protest_active, url: [ong, @initiative] %>
           <%= render 'active_inactive', icon_class: 'comments', title: 'Spamear', object: @initiative, attribute: :spam_active, url: [ong, @initiative] %>
@@ -98,7 +97,7 @@
 		</div>
     <% if permitted_to? :manage, :initiatives %>
       <div class="textBox">
-        <%= link_to "Ver lista de Firmantes", "javascript:void(0)", class: "btn btn-info btn-lg btn-block" %>
+        <%= link_to "Ver lista de Firmantes", ong_initiative_signs_path(ong, @initiative), class: "btn btn-info btn-lg btn-block" %>
   		</div>
     <% else %>
   		<% if @initiative.signs_active %>
