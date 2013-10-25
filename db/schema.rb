@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131021203822) do
+ActiveRecord::Schema.define(version: 20131025141557) do
 
   create_table "ads", force: true do |t|
     t.string   "type"
@@ -24,6 +24,32 @@ ActiveRecord::Schema.define(version: 20131021203822) do
 
   add_index "ads", ["initiative_id"], name: "index_ads_on_initiative_id", using: :btree
   add_index "ads", ["type"], name: "index_ads_on_type", using: :btree
+
+  create_table "chambers", force: true do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "chambers", ["name"], name: "index_chambers_on_name", unique: true, using: :btree
+
+  create_table "commissions", force: true do |t|
+    t.string   "name",       null: false
+    t.integer  "chamber_id", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "commissions", ["name", "chamber_id"], name: "index_commissions_on_name_and_chamber_id", unique: true, using: :btree
+
+  create_table "commissions_representatives", id: false, force: true do |t|
+    t.integer "commission_id",     null: false
+    t.integer "representative_id", null: false
+  end
+
+  add_index "commissions_representatives", ["commission_id", "representative_id"], name: "index_commissions_representatives", unique: true, using: :btree
+  add_index "commissions_representatives", ["commission_id"], name: "index_commissions_representatives_on_commission_id", using: :btree
+  add_index "commissions_representatives", ["representative_id"], name: "index_commissions_representatives_on_representative_id", using: :btree
 
   create_table "donations", force: true do |t|
     t.integer  "initiative_id"
@@ -58,13 +84,15 @@ ActiveRecord::Schema.define(version: 20131021203822) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "active",             default: true
-    t.integer  "signs_count"
+    t.integer  "signs_count",        default: 0
     t.boolean  "protest_active"
     t.boolean  "spam_active"
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.integer  "spam_receiver_id"
+    t.string   "spam_receiver_type"
   end
 
   add_index "initiatives", ["active"], name: "index_initiatives_on_active", using: :btree
@@ -122,6 +150,24 @@ ActiveRecord::Schema.define(version: 20131021203822) do
   end
 
   add_index "related_links", ["initiative_id"], name: "index_related_links_on_initiative_id", using: :btree
+
+  create_table "representatives", force: true do |t|
+    t.string   "first_name",       null: false
+    t.string   "last_name",        null: false
+    t.string   "second_last_name", null: false
+    t.integer  "chamber_id",       null: false
+    t.string   "party",            null: false
+    t.string   "email",            null: false
+    t.string   "twitter"
+    t.string   "facebook"
+    t.string   "webpage"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "representatives", ["first_name"], name: "index_representatives_on_first_name", using: :btree
+  add_index "representatives", ["last_name"], name: "index_representatives_on_last_name", using: :btree
+  add_index "representatives", ["second_last_name"], name: "index_representatives_on_second_last_name", using: :btree
 
   create_table "roles", force: true do |t|
     t.string   "name"

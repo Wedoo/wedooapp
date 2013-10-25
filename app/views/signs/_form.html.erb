@@ -14,5 +14,5 @@
   <%= f.input :last_name, placeholder: "Tu apellido" %>
   <%= f.input :email, placeholder: "Tu correo electrónico" %>
   <%= f.input :identifier, placeholder: "Tu RUT", input_html: { data: { validate: "rut" } } %>
-  <%= f.button :submit, "Firmar", class: "btn-info btn-lg btn-block", disable_with: "Firmando..." %>
+  <%= f.button :submit, "Firmar", class: "btn-info btn-lg btn-block", data: { disable_with: "Firmando..." } %>
 <% end %>

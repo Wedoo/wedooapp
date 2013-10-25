@@ -5,6 +5,7 @@ class Initiative < ActiveRecord::Base
   has_many :signs, dependent: :destroy
   has_many :ads, dependent: :destroy
   has_many :related_links, dependent: :destroy
+  belongs_to :spam_receiver, polymorphic: true
   
   has_attached_file :image,
       styles: { medium: "300x300>", thumb: "80x80>" },
@@ -25,7 +26,7 @@ class Initiative < ActiveRecord::Base
   validates :hashtag, presence: true, format: { with: /\A[a-z][\w]*\Z/i }
   
   def has_actions?
-    signs_active || donations_active
+    signs_active || donations_active || spam_active
   end
   
 end

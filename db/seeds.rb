@@ -21,6 +21,25 @@ user_admin = User.find_or_create_by(email: 'awesome_admin@wedoo.cl') do |u|
   u.confirmed_at = Date.today
 end
 
+
+senate = Chamber.create(name: 'Senado')
+deputies = Chamber.create(name: 'Cámara')
+
+s1 = Representative.create(first_name: 'Carlos', last_name: 'Cantero', second_last_name: 'Ojeda', chamber: senate, party: 'Ind', email: 'ccantero@senado.cl', twitter: 'SenadorCantero', facebook: 'https://www.facebook.com/pages/Senador-Carlos-Cantero/245202768842200', webpage: 'http://www.cantero.cl/')
+s2 = Representative.create(first_name: 'Alejandro', last_name: 'Navarro', second_last_name: 'Brain', chamber: senate, party: 'MAS', email: 'anavarro@senado.cl', twitter: 'senadornavarro', facebook: 'http://www.facebook.com/alejandronavarrobrain', webpage: 'http://www.navarro.cl/')
+s3 = Representative.create(first_name: 'Jaime', last_name: 'Quintana', second_last_name: 'Leal', chamber: senate, party: 'PPD', email: 'jquintana@senado.cl', twitter: 'senadorquintana', facebook: 'https://www.facebook.com/groups/47163357630/', webpage: 'http://jaimequintana.cl/')
+s4 = Representative.create(first_name: 'Ena', last_name: 'Von Baer', second_last_name: 'Jahn', chamber: senate, party: 'UDI', email: 'evonbaer@senado.cl', twitter: 'enavonbaer', facebook: 'http://www.facebook.com/enavonbaer', webpage: 'http://www.enavonbaer.cl/')
+s5 = Representative.create(first_name: 'Ignacio', last_name: 'Walker', second_last_name: 'Prieto', chamber: senate, party: 'PDC', email: 'iwalker@senado.cl', twitter: 'ignaciowalker', facebook: 'http://www.facebook.com/ignaciowalkerp', webpage: 'http://www.ignaciowalker.cl/')
+
+s6 = Representative.create(first_name: 'Camilo', last_name: 'Escalona', second_last_name: 'Medina', chamber: senate, party: 'PS', email: 'cescalona@senado.cl', twitter: nil, facebook: nil, webpage: 'http://escalonasenador.cl/')
+s7 = Representative.create(first_name: 'Carlos', last_name: 'Kuschel', second_last_name: 'Silva', chamber: senate, party: 'RN', email: 'kuschel@senado.cl', twitter: nil, facebook: nil, webpage: 'http://www.kuschel.cl/')
+s8 = Representative.create(first_name: 'Ricardo', last_name: 'Lagos', second_last_name: 'Weber', chamber: senate, party: 'PPD', email: 'rlagos@senado.cl', twitter: 'lagosweber', facebook: 'http://www.facebook.com/pages/Ricardo-Lagos-Weber/8885557220', webpage: 'http://www.lagosweber.cl/')
+s9 = Representative.create(first_name: 'Jovino', last_name: 'Novoa', second_last_name: 'Vásquez', chamber: senate, party: 'UDI', email: 'jnovoa@senado.cl', twitter: nil, facebook: nil, webpage: 'http://www.jovinonovoa.cl/')
+s10 = Representative.create(first_name: 'Andrés', last_name: 'Zaldívar', second_last_name: 'Larraín', chamber: senate, party: 'PDC', email: 'azaldivar@senado.cl', twitter: 'andreszaldivarl', facebook: 'https://www.facebook.com/andres.zaldivarlarrain', webpage: 'http://andreszaldivar.cl/')
+
+education_commission = Commission.create(name: "Educación, Cultura, Ciencia y Tecnología", chamber: senate, representatives: [s1, s2, s3, s4, s5])
+finance_commission = Commission.create(name: "Hacienda", chamber: senate, representatives: [s6, s7, s8, s9, s10])
+
 ong = Ong.create do |o|
   o.name = 'Educacion 2020'
   o.mission = "Mi misión"
@@ -77,8 +96,10 @@ initiative3 = Initiative.create do |i|
   </div>
   EOF
   i.hashtag = "RechazoDescuentoTributarioEducPrivada"
-  i.signs_active = false
+  i.signs_active = true
   i.donations_active = false
+  i.spam_active = true
+  i.spam_receiver = education_commission
   i.ong = ong
   i.initiative_stat = InitiativeStat.new(signs_count: 102, donations_count: 12, donations_amount: 52, conversions_count: 22)
 end
