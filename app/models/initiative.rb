@@ -7,6 +7,10 @@ class Initiative < ActiveRecord::Base
   has_many :related_links, dependent: :destroy
   belongs_to :spam_receiver, polymorphic: true
   
+  attr_accessor :delete_image
+  
+  before_save :delete_image?
+  
   has_attached_file :image,
       styles: { medium: "300x300>", thumb: "80x80>" },
       default_url: '/assets/placeholder.png',
@@ -27,6 +31,11 @@ class Initiative < ActiveRecord::Base
   
   def has_actions?
     signs_active || donations_active || spam_active
+  end
+  
+  private
+  def delete_image?
+    image.clear if delete_image == '1'
   end
   
 end

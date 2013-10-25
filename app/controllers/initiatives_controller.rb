@@ -58,7 +58,7 @@ class InitiativesController < ApplicationController
   
   private
   def initiative_params
-    params.require(:initiative).permit(:title, :description, :hashtag, :image, :active)
+    params.require(:initiative).permit(:title, :description, :hashtag, :image, :delete_image, :active)
   end
   
   def set_initiative

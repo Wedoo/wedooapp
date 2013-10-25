@@ -88,6 +88,7 @@
       <% end %>
     <% end %>
 		<div class="textBox">
+      <%= image_tag @initiative.image.url(:medium), alt: "Imagen iniciativa", class: 'thumbnail pull-left' if @initiative.image.exists? %>
 			<%= @initiative.description.html_safe %>
 		</div>
 		<div class="well statistics">
