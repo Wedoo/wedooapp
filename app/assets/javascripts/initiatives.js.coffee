@@ -2,21 +2,47 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
+class ActivationToggle
+  constructor: (@form) ->
+    @form = $(@form)
+    @event = @form.data('trigger')
+    that = this
+    $(@form).on 'click', 'label', (e) ->
+      $this = $(this)
+      return if $this.hasClass('active')
+      $this.trigger(that.event, that)
+      e.preventDefault()
+
+  toggle: ->
+    @form.find('label').not('.active').button('toggle')
+    
+  value: ->
+    @form.find('label.active input').val() == "true"
+      
+  
+
 initiative_events = ->
   $('#goto-sign-button').on 'click', (e) ->
     $('#signInitiative input').removeAttr("disabled")
     $('#signInitiative')[0].scrollIntoView()
     $('#signInitiative input[type=text], #signInitiative input[type=email]').val("").first().focus()
     e.preventDefault()
+    
   $('.wysihtml5').each (i, elem) ->
     $(elem).wysihtml5()
   
   $('form.active-inactive-form').each (i, elem) ->
-    $(this).on 'click', 'label', (e) ->
-      return if $(this).hasClass("active")
-      $this = $(this)
-      $this.trigger($this.parents('form').data('trigger'), $this.find('input'))
-      e.preventDefault()
+    new ActivationToggle this
+      
+  $spam_selector = $('input[name=initiative\\[spam_receiver_selected\\]]')
+  if $spam_selector.length > 0
+    if $spam_selector.filter(':checked').val() != 'commission'
+      $('#select-commission').hide()
+    $spam_selector.on 'change', ->
+      if $(this).val() == 'commission'
+        $('#select-commission').show()
+      else
+        $('#select-commission').hide()
 
 $(document).on 'page:change', ->
   # wysihtml5
@@ -25,21 +51,28 @@ $(document).on 'page:change', ->
   # otros eventos relevantes
   initiative_events()
   
-$(document).on 'form:signs-active', (event, input) ->
-  $input = $(input)
-  value = $input.val()
-  $elem = if (value == "true") then $('#signs-activation-confirmation') else $('#signs-deactivation-confirmation')
-  $cancel = $elem.find('button.cancel')
-  unless $cancel.data("handler")
-    $cancel.data("handler", true).on 'click', ->
-      i = $input.parent().index()
-      $input.parents("div.btn-group").children().eq(1 - i).button("toggle")
-  $elem.modal()
-  
 $ ->
-
   initiative_events()
   
+  
+$(document).on 'form:signs-active', (event, at) ->
+  value = at.value()
+  $elem = if (value) then $('#signs-deactivation-confirmation') else $('#signs-activation-confirmation')
+  unless $elem.data('handler')
+    $elem.data('handler', true).on 'hide.bs.modal', ->
+      at.toggle()
+  $elem.modal()
+  
+
+$(document).on 'form:spam-active', (event, at) ->
+  value = at.value()
+  $elem = if (value) then $('#spam-deactivation-confirmation') else $('#spam-activation-confirmation')
+  unless $elem.data('handler')
+    $elem.data('handler', true).on 'hide.bs.modal', ->
+      at.toggle()
+  $elem.modal()
+
+
 
 this.InitiativesModule ||= {}
   

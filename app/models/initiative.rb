@@ -7,7 +7,7 @@ class Initiative < ActiveRecord::Base
   has_many :related_links, dependent: :destroy
   belongs_to :spam_receiver, polymorphic: true
   
-  attr_accessor :delete_image
+  attr_accessor :delete_image, :spam_param
   
   before_save :delete_image?
   
@@ -31,6 +31,24 @@ class Initiative < ActiveRecord::Base
   
   def has_actions?
     signs_active || donations_active || spam_active
+  end
+  
+  def spam_receiver_selected
+    return nil if self.spam_receiver.nil?
+    return self.spam_receiver.codename.to_sym if self.spam_receiver_type == Chamber.name
+    return :commission if self.spam_receiver_type == Commission.name
+    return nil
+  end
+  
+  def spam_receiver_selected=(value)
+    case value
+    when :commission.to_s
+      self.spam_receiver = Commission.find(self.spam_param)
+    when :deputies.to_s
+      self.spam_receiver = Chamber.find_by(codename: :deputies)
+    when :senate.to_s
+      self.spam_receiver = Chamber.find_by(codename: :senate)
+    end
   end
   
   private

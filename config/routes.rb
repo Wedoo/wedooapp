@@ -9,6 +9,7 @@ Wedoo::Application.routes.draw do
   resources :ongs, only: :show do
     resources :initiatives do
       get 'toggle_signs_active', on: :member
+      match 'toggle_spam_active', on: :member, via: [:get, :patch]
       resources :signs, only: [:new, :create, :index]
       resources :donations do 
         get 'thanks', on: :collection

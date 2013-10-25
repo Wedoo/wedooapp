@@ -27,10 +27,12 @@ ActiveRecord::Schema.define(version: 20131025141557) do
 
   create_table "chambers", force: true do |t|
     t.string   "name",       null: false
+    t.string   "codename",   null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "chambers", ["codename"], name: "index_chambers_on_codename", unique: true, using: :btree
   add_index "chambers", ["name"], name: "index_chambers_on_name", unique: true, using: :btree
 
   create_table "commissions", force: true do |t|

@@ -22,8 +22,8 @@ user_admin = User.find_or_create_by(email: 'awesome_admin@wedoo.cl') do |u|
 end
 
 
-senate = Chamber.create(name: 'Senado')
-deputies = Chamber.create(name: 'Cámara')
+senate = Chamber.create(name: 'Senado', codename: :senate)
+deputies = Chamber.create(name: 'Cámara', codename: :deputies)
 
 s1 = Representative.create(first_name: 'Carlos', last_name: 'Cantero', second_last_name: 'Ojeda', chamber: senate, party: 'Ind', email: 'ccantero@senado.cl', twitter: 'SenadorCantero', facebook: 'https://www.facebook.com/pages/Senador-Carlos-Cantero/245202768842200', webpage: 'http://www.cantero.cl/')
 s2 = Representative.create(first_name: 'Alejandro', last_name: 'Navarro', second_last_name: 'Brain', chamber: senate, party: 'MAS', email: 'anavarro@senado.cl', twitter: 'senadornavarro', facebook: 'http://www.facebook.com/alejandronavarrobrain', webpage: 'http://www.navarro.cl/')

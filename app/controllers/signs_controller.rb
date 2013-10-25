@@ -10,6 +10,7 @@ class SignsController < ApplicationController
   end
 
   def create
+    redirect_to([ong, @initiative]) and return unless @initiative.signs_active
     @sign = Sign.new(sign_params)
     @sign.initiative = @initiative
     respond_to do |format|
