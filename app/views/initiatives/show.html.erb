@@ -27,6 +27,60 @@
 	</div>
 <% end %>
 
+<%= modal_window id: 'donations-deactivation-confirmation', data: { backdrop: 'static'} do %>
+  <div class="modal-header donateHeader">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h5 class="modal-title donateTitle"><i class="icon-bullhorn"></i> Activar Donaciones</h5>
+  </div>
+  <div class="modal-body">
+  ¿Estás seguro que quieres desactivar?
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-link cancel" data-dismiss="modal">Cancelar</button>
+    <%= link_to "Confirmar", toggle_donations_active_ong_initiative_path(ong, @initiative), class: "btn btn-info confirm" %>
+  </div>
+<% end %>
+
+<%= modal_window id: 'donations-activation-confirmation', data: { backdrop: 'static'} do %>
+
+  <div class="modal-header donateHeader">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h5 class="modal-title donateTitle"><i class="icon-bullhorn"></i> Activar Donaciones</h5>
+  </div>
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      
+          <div style="margin:0;padding:0;display:inline">
+            <input name="utf8" type="hidden" value="✓">
+            <input name="authenticity_token" type="hidden" value="jeNLfgj+SoMI6e4Jc9J2N2AhxWhhSllviW6KCWonLjU=">
+          </div>
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+            <% if !@initiative.has_paypal_app? %>
+              <p>Antes de poder manajer tus donaciones, es necesario que nos proveas autorización para consultar tu cuenta de Paypal. Si estás de acuerdo, haz clic <a href="https://developer.paypal.com/webapps/developer/docs/classic/api/apiCredentials/" _targe="window"> acá</a>, ingresa tus credenciales de paypal y luego copia y pega "Nombre de usuario de API", "Contraseña de API" y "Firma" en el formulario de abajo. </p>
+              <p>Si no tienes cuenta de PayPal, primero debes crear una. Te recomendamos que asocies la misma tarjeta de crédito a tu cuenta PayPal y a tu cuenta de Adwords, ya que una vez que recibas donaciones, los pagos de adwords deben ser cargados a una tarjeta de crédito.</p>
+              <span id="new_ong_paypal_app"></span>
+              <div id="paypal_form">
+                
+                
+               
+
+              </div>
+
+            <% end %>
+            </div>
+          </div>
+      </div>                           
+    </div>
+    </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-link cancel" data-dismiss="modal">Cancelar</button>
+    <%= link_to "Confirmar", toggle_donations_active_ong_initiative_path(ong, @initiative), class: "btn btn-info next" %>
+  </div>                    
+
+<% end %>
 
 <div class="row">
 	<div class="col-md-12">
@@ -37,7 +91,7 @@
   			<hr />
   			<div class="row">
           <%= render 'active_inactive', icon_class: 'pencil', title: 'Firmas', object: @initiative, attribute: :signs_active, options: { event_name: 'form:signs-active' } %>
-          <%= render 'active_inactive', icon_class: 'money', title: 'Donaciones', object: @initiative, attribute: :donations_active, options: {} %>
+          <%= render 'active_inactive', icon_class: 'money', title: 'Donaciones', object: @initiative, attribute: :donations_active, options: {event_name: 'form:donations-active'} %>
           <%= render 'active_inactive', icon_class: 'group', title: 'Manifestación', object: @initiative, attribute: :protest_active, options: {} %>
           <%= render 'active_inactive', icon_class: 'comments', title: 'Spamear', object: @initiative, attribute: :spam_active, options: {} %>
   			</div>

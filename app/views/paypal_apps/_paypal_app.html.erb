@@ -1,0 +1,11 @@
+<tr  id="paypal_app_<%= paypal_app.id %>">
+    <td><%= paypal_app.client_id %></td>
+    <td><%= paypal_app.client_secret %></td>
+    <td><%= paypal_app.username %></td>
+    <td><%= paypal_app.app_id %></td>
+    <td><%= paypal_app.password %></td>
+    <td><%= paypal_app.signature %></td>
+    <td><%= link_to 'Show', ong_paypal_app_path(ong,paypal_app) %></td>
+    <td><%= link_to 'Edit', edit_ong_paypal_app_path(ong,paypal_app), :remote => true, :class=> "edit_ong_paypal_app"%></td>
+    <td><%= link_to 'Destroy', ong_paypal_app_path(ong,paypal_app), method: :delete, data: { confirm: 'Are you sure?', :remote => true } %></td>
+</tr>

@@ -27,8 +27,22 @@ $(document).on 'page:change', ->
   
 $(document).on 'form:signs-active', (event, input) ->
   $input = $(input)
+  console.log($input)
   value = $input.val()
   $elem = if (value == "true") then $('#signs-activation-confirmation') else $('#signs-deactivation-confirmation')
+  $cancel = $elem.find('button.cancel')
+  unless $cancel.data("handler")
+    $cancel.data("handler", true).on 'click', ->
+      i = $input.parent().index()
+      $input.parents("div.btn-group").children().eq(1 - i).button("toggle")
+  $elem.modal()
+  
+$ ->  
+initiative_events()
+$(document).on 'form:donations-active', (event, input) ->
+  $input = $(input)
+  value = $input.val()
+  $elem = if (value == "true") then $('#donations-activation-confirmation') else $('#donations-deactivation-confirmation')
   $cancel = $elem.find('button.cancel')
   unless $cancel.data("handler")
     $cancel.data("handler", true).on 'click', ->
@@ -47,3 +61,6 @@ this.InitiativesModule.refresh_signs = (count) ->
   $('[data-signs-count]').each (i) -> 
     $this = $(this)
     $this.html(count + +$this.data("signs-count"))
+
+$(document).ready ->
+  $("#paypal_form").load "../paypal_apps/new #new_paypal_app"

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131021203822) do
+ActiveRecord::Schema.define(version: 20131024210212) do
 
   create_table "ads", force: true do |t|
     t.string   "type"
@@ -24,6 +24,18 @@ ActiveRecord::Schema.define(version: 20131021203822) do
 
   add_index "ads", ["initiative_id"], name: "index_ads_on_initiative_id", using: :btree
   add_index "ads", ["type"], name: "index_ads_on_type", using: :btree
+
+  create_table "adword_auths", force: true do |t|
+    t.integer  "initiative_id"
+    t.string   "access_token"
+    t.string   "refresh_token"
+    t.datetime "issued_at"
+    t.integer  "expires_in"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "adword_auths", ["initiative_id"], name: "index_adword_auths_on_initiative_id", using: :btree
 
   create_table "donations", force: true do |t|
     t.integer  "initiative_id"

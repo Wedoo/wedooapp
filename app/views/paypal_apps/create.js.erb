@@ -1,0 +1,12 @@
+<% if @paypal_app.errors.count == 0 %>
+
+        $('#new_paypal_app').remove();
+        $('#new_ong_paypal_app').show();
+        $('#paypal_apps').append('<%= j render("paypal_app", :paypal_app => @paypal_app) %>');
+
+<% else %>
+
+        $('#new_paypal_app').remove();
+        $('#new_ong_paypal_app').after('<%= j render("form") %>');
+
+<% end %>

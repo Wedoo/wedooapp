@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  initiative_id: 
+  access_token: MyString
+  refresh_token: MyString
+  issued_at: 2013-10-24 18:02:12
+  expires_in: 1
+
+two:
+  initiative_id: 
+  access_token: MyString
+  refresh_token: MyString
+  issued_at: 2013-10-24 18:02:12
+  expires_in: 1

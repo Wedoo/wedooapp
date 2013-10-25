@@ -53,6 +53,13 @@ class InitiativesController < ApplicationController
     @initiative.signs_active = !@initiative.signs_active
     @initiative.save
     redirect_to [ong, @initiative]
+  end  
+  
+  def toggle_donations_active
+    set_initiative
+    @initiative.donations_active = !@initiative.donations_active
+    @initiative.save
+    redirect_to [ong, @initiative]
   end
   
   

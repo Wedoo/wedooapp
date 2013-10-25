@@ -33,9 +33,11 @@ class PaypalAppsController < ApplicationController
       if @paypal_app.save
         format.html { redirect_to [ong, @paypal_app], notice: 'Paypal app was successfully created.' }
         format.json { render action: 'show', status: :created, location: @paypal_app }
+        format.js
       else
         format.html { render action: 'new' }
         format.json { render json: @paypal_app.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -47,9 +49,11 @@ class PaypalAppsController < ApplicationController
       if @paypal_app.update(paypal_app_params)
         format.html { redirect_to [ong, @paypal_app], notice: 'Paypal app was successfully updated.' }
         format.json { head :no_content }
+        format.js
       else
         format.html { render action: 'edit' }
-        format.json { render json: @paypal_app.errors, status: :unprocessable_entity }
+        format.json { render json: [@paypal_app.errors], status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -61,6 +65,7 @@ class PaypalAppsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to ong_paypal_apps_url(ong) }
       format.json { head :no_content }
+      format.js
     end
   end
 

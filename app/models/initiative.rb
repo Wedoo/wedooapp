@@ -28,4 +28,8 @@ class Initiative < ActiveRecord::Base
     signs_active || donations_active
   end
   
+  def has_paypal_app?
+    !self.ong.payment_apps.empty?
+  end
+
 end

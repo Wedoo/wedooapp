@@ -1,5 +1,7 @@
 Wedoo::Application.routes.draw do
 
+  
+
   root 'home#index'
 
   # ATENCION: "devise_for :users" debe ir antes de "resources :users" !
@@ -9,7 +11,9 @@ Wedoo::Application.routes.draw do
   resources :ongs, only: :show do
     resources :initiatives do
       get 'toggle_signs_active', on: :member
+      get 'toggle_donations_active', on: :member
       resources :signs, only: [:new, :create, :index]
+      resources :adword_auths
       resources :donations do 
         get 'thanks', on: :collection
         get 'no_thanks', on: :collection

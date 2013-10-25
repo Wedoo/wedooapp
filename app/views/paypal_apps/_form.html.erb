@@ -1,13 +1,15 @@
-<%= simple_form_for([ong,@paypal_app]) do |f| %>
-  <%= f.error_notification %>
+<%= simple_form_for([ong,@paypal_app], wrapper: :paypal,html: { class: 'form-horizontal', multipart: true}, remote: true) do |f| %>
 
   <div class="form-inputs">
+    <%= f.error_notification%>
     <%= f.input :active, as: :boolean%>
     <%= f.input :mode, priority: [ "sandbox" ], collection: [ ["sandbox", 0],["live",1 ]]%>
-    <h2>REST API</h2>
+    <h6>REST API</h6>
+    <hr>
     <%= f.input :client_id , label: 'Client id'%>
     <%= f.input :client_secret, label: 'Client secret' %>
-    <h2>Classic API</h2>   
+    <h6>Classic API</h6>   
+    <hr>
     <%= f.input :app_id , label: 'App id'%>
     <%= f.input :username %>
     <%= f.input :password %>

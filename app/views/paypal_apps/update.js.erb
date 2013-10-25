@@ -1,0 +1,10 @@
+<% if @paypal_app.errors.count == 0 %>
+
+$('#new_ong_paypal_app').hide().after('<%= j render("form") %>');
+
+<% else %>
+
+$('.edit_ong_paypal_app').remove();
+$('#new_ong_paypal_app').after('<%= j render("form") %>');
+
+<% end %>

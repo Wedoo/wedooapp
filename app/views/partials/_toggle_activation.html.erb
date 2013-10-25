@@ -4,7 +4,7 @@
       <%= f.radio_button(attribute, false) + "inactivo" %>
     <% end %>
     <%= f.label attribute, class: "btn btn-default btn-sm#{value ? " active" : ""}" do %>
-      <%= f.radio_button(attribute, false) + "activo" %>
+      <%= f.radio_button(attribute, true) + "activo" %>
     <% end %>
   </div>
 <% end %>
