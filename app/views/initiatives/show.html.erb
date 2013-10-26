@@ -1,87 +1,88 @@
-<%= modal_window id: 'signs-activation-confirmation' do %>
-  <div class="modal-header signHeader">
-  	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-  	<h5 class="modal-title signTitle"><i class="icon-pencil"></i>Activar Firmas</h5>
-  </div>
-  <div class="modal-body">
-    <p>Se creará un botón "Firmar" en tu iniciativa, instando a los visitantes a que se adhieran a ella con el formulario que aparecerá en la parte inferior.</p>
-    <p>Una vez que tengas adherentes podrás ver y descargar la lista de datos de los mismos.</p>
-  </div>
-  <div class="modal-footer">
-		<button type="button" class="btn btn-link cancel" data-dismiss="modal">Cancelar</button>
-    <%= link_to "Confirmar", toggle_signs_active_ong_initiative_path(ong, @initiative), class: "btn btn-info confirm" %>
-	</div>
-<% end %>
-
-<%= modal_window id: 'signs-deactivation-confirmation' do %>
-  <div class="modal-header signHeader">
-  	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-  	<h5 class="modal-title signTitle"><i class="icon-pencil"></i>Desactivar Firmas</h5>
-  </div>
-  <div class="modal-body">
-    <p>Los potenciales adherentes ya no podrán demostrar su interés por tu iniciativa.</p>
-  </div>
-  <div class="modal-footer">
-		<button type="button" class="btn btn-link cancel" data-dismiss="modal">Cancelar</button>
-    <%= link_to "Confirmar", toggle_signs_active_ong_initiative_path(ong, @initiative), class: "btn btn-info confirm" %>
-	</div>
-<% end %>
-
-<%= modal_window id: 'spam-activation-confirmation' do %>
-  <div class="modal-header spamHeader">
-  	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-  	<h5 class="modal-title spamTitle"><i class="icon-envelope"></i>Activar Comunicación con Legisladores</h5>
-  </div>
-  <%= simple_form_for @initiative, url: toggle_spam_active_ong_initiative_path(ong, @initiative), method: :patch, id: 'spam_activation_form' do |f| %>
+<% if permitted_to? :update, :initiatives %>
+  <%= modal_window id: 'signs-activation-confirmation' do %>
+    <div class="modal-header signHeader">
+    	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    	<h5 class="modal-title signTitle"><i class="icon-pencil"></i>Activar Firmas</h5>
+    </div>
     <div class="modal-body">
-      <p>Invita a tus adherentes a comunicarse con sus legisladores. Para ello, especifica quiénes son los legisladores pertientes según el estado de tu iniciativa:</p>
-      <div class="row">
-  			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <%= f.label 'Legisladores pertinentes' %>
-  			</div>
-  			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <%= f.input :spam_active, as: :hidden, input_html: { value: true } %>
-  				<div class="btn-group" data-toggle="buttons">
-            <%= f.label :spam_receiver_selected, class: "btn btn-sm btn-success#{@initiative.spam_receiver_selected == :commission ? " active" : ""}" do %>
-              <%= f.radio_button(:spam_receiver_selected, :commission) + "Comisión" %>
-            <% end %>
-            <%= f.label :spam_receiver_selected, class: "btn btn-sm btn-success#{@initiative.spam_receiver_selected == :deputies ? " active" : ""}" do %>
-              <%= f.radio_button(:spam_receiver_selected, :deputies) + "Cámara" %>
-            <% end %>
-            <%= f.label :spam_receiver_selected, class: "btn btn-sm btn-success#{@initiative.spam_receiver_selected == :senate ? " active" : ""}" do %>
-              <%= f.radio_button(:spam_receiver_selected, :senate) + "Senado" %>
-            <% end %>
-  				</div>
-  			</div>
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <div id="select-commission">
-            <%= f.input :spam_param, collection: Commission.all, prompt: 'Selecciona la comisión…', label: '¿Cuál Comisión?' %>
-          </div>
-        </div>
-  		</div>
+      <p>Se creará un botón "Firmar" en tu iniciativa, instando a los visitantes a que se adhieran a ella con el formulario que aparecerá en la parte inferior.</p>
+      <p>Una vez que tengas adherentes podrás ver y descargar la lista de datos de los mismos.</p>
     </div>
     <div class="modal-footer">
   		<button type="button" class="btn btn-link cancel" data-dismiss="modal">Cancelar</button>
-      <%= f.button :submit, "Confirmar", class: "btn btn-success confirm" %>
+      <%= link_to "Confirmar", toggle_signs_active_ong_initiative_path(ong, @initiative), class: "btn btn-info confirm" %>
+  	</div>
+  <% end %>
+
+  <%= modal_window id: 'signs-deactivation-confirmation' do %>
+    <div class="modal-header signHeader">
+    	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    	<h5 class="modal-title signTitle"><i class="icon-pencil"></i>Desactivar Firmas</h5>
+    </div>
+    <div class="modal-body">
+      <p>Los potenciales adherentes ya no podrán demostrar su interés por tu iniciativa.</p>
+    </div>
+    <div class="modal-footer">
+  		<button type="button" class="btn btn-link cancel" data-dismiss="modal">Cancelar</button>
+      <%= link_to "Confirmar", toggle_signs_active_ong_initiative_path(ong, @initiative), class: "btn btn-info confirm" %>
+  	</div>
+  <% end %>
+
+  <%= modal_window id: 'spam-activation-confirmation' do %>
+    <div class="modal-header spamHeader">
+    	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    	<h5 class="modal-title spamTitle"><i class="icon-envelope"></i>Activar Comunicación con Legisladores</h5>
+    </div>
+    <%= simple_form_for @initiative, url: toggle_spam_active_ong_initiative_path(ong, @initiative), method: :patch, id: 'spam_activation_form' do |f| %>
+      <div class="modal-body">
+        <p>Invita a tus adherentes a comunicarse con sus legisladores. Para ello, especifica quiénes son los legisladores pertientes según el estado de tu iniciativa:</p>
+        <div class="row">
+    			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <%= f.label 'Legisladores pertinentes' %>
+    			</div>
+    			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <%= f.input :spam_active, as: :hidden, input_html: { value: true } %>
+    				<div class="btn-group" data-toggle="buttons">
+              <%= f.label :spam_receiver_selected, class: "btn btn-sm btn-success#{@initiative.spam_receiver_selected == :commission ? " active" : ""}" do %>
+                <%= f.radio_button(:spam_receiver_selected, :commission) + "Comisión" %>
+              <% end %>
+              <%= f.label :spam_receiver_selected, class: "btn btn-sm btn-success#{@initiative.spam_receiver_selected == :deputies ? " active" : ""}" do %>
+                <%= f.radio_button(:spam_receiver_selected, :deputies) + "Cámara" %>
+              <% end %>
+              <%= f.label :spam_receiver_selected, class: "btn btn-sm btn-success#{@initiative.spam_receiver_selected == :senate ? " active" : ""}" do %>
+                <%= f.radio_button(:spam_receiver_selected, :senate) + "Senado" %>
+              <% end %>
+    				</div>
+    			</div>
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div id="select-commission">
+              <%= f.input :spam_param, collection: Commission.all, prompt: 'Selecciona la comisión…', label: '¿Cuál Comisión?' %>
+            </div>
+          </div>
+    		</div>
+      </div>
+      <div class="modal-footer">
+    		<button type="button" class="btn btn-link cancel" data-dismiss="modal">Cancelar</button>
+        <%= f.button :submit, "Confirmar", class: "btn btn-success confirm" %>
+    	</div>
+    <% end %>
+  <% end %>
+
+  <%= modal_window id: 'spam-deactivation-confirmation' do %>
+    <div class="modal-header spamHeader">
+    	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    	<h5 class="modal-title spamTitle"><i class="icon-envelope"></i>Desactivar Comunicación con Legisladores</h5>
+    </div>
+    <div class="modal-body">
+      <p>Actualmente tienes configurado la comunicación con <strong><%= human_initiative_spam_receiver(@initiative) %></strong>.</p>
+      <p>Tus adherentes no serán instados a comunicarse con sus legisladores.</p>
+    </div>
+    <div class="modal-footer">
+  		<button type="button" class="btn btn-link cancel" data-dismiss="modal">Cancelar</button>
+      <%= link_to "Confirmar", toggle_spam_active_ong_initiative_path(ong, @initiative), class: "btn btn-success confirm" %>
   	</div>
   <% end %>
 <% end %>
-
-<%= modal_window id: 'spam-deactivation-confirmation' do %>
-  <div class="modal-header spamHeader">
-  	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-  	<h5 class="modal-title spamTitle"><i class="icon-envelope"></i>Desactivar Comunicación con Legisladores</h5>
-  </div>
-  <div class="modal-body">
-    <p>Actualmente tienes configurado la comunicación con <strong><%= human_initiative_spam_receiver(@initiative) %></strong>.</p>
-    <p>Tus adherentes no serán instados a comunicarse con sus legisladores.</p>
-  </div>
-  <div class="modal-footer">
-		<button type="button" class="btn btn-link cancel" data-dismiss="modal">Cancelar</button>
-    <%= link_to "Confirmar", toggle_spam_active_ong_initiative_path(ong, @initiative), class: "btn btn-success confirm" %>
-	</div>
-<% end %>
-
 
 <div class="row">
 	<div class="col-md-12">
