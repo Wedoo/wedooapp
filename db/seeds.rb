@@ -415,7 +415,7 @@ initiative1 = Initiative.create do |i|
   </ol>
   EOF
   i.hashtag = "ReformaEducativaQueChileNecesita"
-  i.signs_active = true
+  i.signs_active = false
   i.donations_active = false
   i.ong = ong
   i.initiative_stat = InitiativeStat.new(signs_count: 100, donations_count: 10, donations_amount: 50, conversions_count: 20)
@@ -456,7 +456,7 @@ initiative3 = Initiative.create do |i|
   i.signs_active = true
   i.donations_active = false
   i.spam_active = true
-  i.spam_receiver = education_commission
+  i.spam_receiver = senate
   i.ong = ong
   i.initiative_stat = InitiativeStat.new(signs_count: 102, donations_count: 12, donations_amount: 52, conversions_count: 22)
   i.image_file_name = "rechazamos_incentivo_tributario.png"
