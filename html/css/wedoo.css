@@ -434,15 +434,16 @@ h1,h2,h3,h4,h5,h6,label,#siteMenu,table th,input[type="submit"],button,.btn,.dro
 	font-family: 'Capriola', sans-serif;
 }
 .btn {border:none;}
-.btn.btn-default {background:#555555; color:#fff; filter:none;}
+.btn.btn-default {background:#555; color:#fff; filter:none;}
 .btn.btn-default:hover, .btn.btn-default:active {background:#002c56; color:#fff;}
 label {color:#777; font-size:90%; font-weight:normal;}
 h1,h2,h3,h4,h5,h6 {text-shadow: 0 1px 0 #fff;}
 hr {border-top-color: #ddd;}
 table {background:#fff;}
-table th {background:#555555; color:#fff; text-transform:uppercase; font-size:70%;}
-.table-bordered {border-top-color:#555555;}
-.table-bordered > thead > tr > th {border-right-color:#555555;}
+table > thead > tr> th {background:#555; color:#fff; text-transform:uppercase; font-size:70%;}
+table > tbody > tr> th {background:#f6f6f6; font-size:85%; font-weight:normal;}
+.table-bordered {border-top-color:#555;}
+.table-bordered > thead > tr > th {border-right-color:#555;}
 .table-bordered > thead > tr > th:last-child {border-right:none;}
 table td {text-shadow:0 1px 0 #fff;}
 .table-striped > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {background:#f6f6f6;}
@@ -610,6 +611,33 @@ i {margin-right:5px;}
 
 /* Signs List */
 table + .pagination {margin-top:0;}
+
+/* Laws */
+table#legislative-observatory > thead > tr > th {font-weight:normal; text-align:center; vertical-align: middle;}
+table#legislative-observatory > tbody > tr > th {width:30%; height:50px; font-weight:normal; vertical-align:middle;}
+table#legislative-observatory > tbody > tr > td {width:10%; height:50px; text-align:center; vertical-align: middle; text-shadow:none;}
+table#legislative-observatory a {
+	display:inline-block;
+    height:40px;
+    margin:0;
+    padding:8px;
+    text-align:center;
+    width:40px;
+    -webkit-border-radius:50%;
+    -moz-border-radius:50%;
+    border-radius:50%;
+    background:#eee;
+    text-shadow:none;
+}
+table#legislative-observatory a.positive-law {background-color:#5cb85c}
+table#legislative-observatory a.negative-law {background-color:#d9534f;}
+table#legislative-observatory a.neutral-law {background-color:#f0c44e;}
+table#legislative-observatory a:hover {text-decoration:none;}
+table#legislative-observatory i {
+	margin:0;
+	font-size:1.6em;
+	color:#fff;
+}
 
 /* Modals */
 .modal-header {
