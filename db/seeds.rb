@@ -419,6 +419,9 @@ initiative1 = Initiative.create do |i|
   i.donations_active = false
   i.ong = ong
   i.initiative_stat = InitiativeStat.new(signs_count: 100, donations_count: 10, donations_amount: 50, conversions_count: 20)
+  i.image_file_name = "reforma.web__0.jpg"
+  i.image_content_type = "image/jpeg"
+  i.image_file_size = 66530
 end
 
 initiative2 = Initiative.create do |i|
@@ -438,6 +441,9 @@ initiative2 = Initiative.create do |i|
   i.donations_active = true
   i.ong = ong
   i.initiative_stat = InitiativeStat.new(signs_count: 101, donations_count: 11, donations_amount: 51, conversions_count: 21)
+  i.image_file_name = "581979_10150823478738337_1564122581_n.jpeg"
+  i.image_content_type = "image/jpeg"
+  i.image_file_size = 49259
 end
 
 initiative3 = Initiative.create do |i|
@@ -453,6 +459,9 @@ initiative3 = Initiative.create do |i|
   i.spam_receiver = education_commission
   i.ong = ong
   i.initiative_stat = InitiativeStat.new(signs_count: 102, donations_count: 12, donations_amount: 52, conversions_count: 22)
+  i.image_file_name = "rechazamos_incentivo_tributario.png"
+  i.image_content_type = "image/png"
+  i.image_file_size = 62777
 end
 
 initiative4 = Initiative.create do |i|
@@ -472,6 +481,9 @@ initiative4 = Initiative.create do |i|
   i.donations_active = false
   i.ong = ong
   i.initiative_stat = InitiativeStat.new(signs_count: 103, donations_count: 13, donations_amount: 53, conversions_count: 23)
+  i.image_file_name = "538669_10150861068473337_1259805122_n.jpeg"
+  i.image_content_type = "image/jpeg"
+  i.image_file_size = 63895
 end
 
 paypal_app=PaypalApp.create do |pa|

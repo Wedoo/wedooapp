@@ -100,12 +100,14 @@
     <% end %>
     
 		<h1><%= @initiative.title %>
-      <%= link_to facebook_url(@initiative), target: "_blank", data: { "facebook-sharer" => true } do %>
-        <i class="icon-facebook-sign"></i>
-      <% end %>
-      <%= link_to tweet_url(@initiative), target: "_blank", data: { "twitter-sharer" => true } do %>
-        <i class="icon-twitter-sign"></i>
-      <% end %>
+      <span class="social-share">
+        <%= link_to facebook_url(@initiative), target: "_blank", data: { "facebook-sharer" => true } do %>
+          <i class="icon-facebook-sign"></i>
+        <% end %>
+        <%= link_to tweet_url(@initiative), target: "_blank", data: { "twitter-sharer" => true } do %>
+          <i class="icon-twitter-sign"></i>
+        <% end %>
+      </span>
     </h1>
 	</div>
 </div>
