@@ -441,9 +441,9 @@ initiative2 = Initiative.create do |i|
   i.donations_active = true
   i.ong = ong
   i.initiative_stat = InitiativeStat.new(signs_count: 101, donations_count: 11, donations_amount: 51, conversions_count: 21)
-  i.image_file_name = "581979_10150823478738337_1564122581_n.jpeg"
+  i.image_file_name = "538669_10150861068473337_1259805122_n.jpeg"
   i.image_content_type = "image/jpeg"
-  i.image_file_size = 49259
+  i.image_file_size = 63895
 end
 
 initiative3 = Initiative.create do |i|
@@ -481,9 +481,9 @@ initiative4 = Initiative.create do |i|
   i.donations_active = false
   i.ong = ong
   i.initiative_stat = InitiativeStat.new(signs_count: 103, donations_count: 13, donations_amount: 53, conversions_count: 23)
-  i.image_file_name = "538669_10150861068473337_1259805122_n.jpeg"
+  i.image_file_name = "581979_10150823478738337_1564122581_n.jpeg"
   i.image_content_type = "image/jpeg"
-  i.image_file_size = 63895
+  i.image_file_size = 49259
 end
 
 paypal_app=PaypalApp.create do |pa|
