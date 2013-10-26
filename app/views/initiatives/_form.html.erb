@@ -6,6 +6,9 @@
   <% end %>
 	<%= f.input :description, input_html: { class: :wysihtml5, rows: 15 } %>
   <%= f.input :image %>
+  <%= f.input :delete_image, label: false do %>
+     <%= f.label :delete_image %> <%= f.check_box :delete_image %>
+  <% end %>
 	<%= f.input :hashtag, wrapper: :prepend do %>
     <%= content_tag :span, '#', class: 'input-group-addon' %>
     <%= f.input_field :hashtag, placeholder: "Hashtag para difundir en Twitter" %>

@@ -17,7 +17,6 @@ module ApplicationHelper
   end
   
   def modal_window(options = {}, &block)
-    puts block
     options[:id] ||= nil
     options[:data] ||= nil
     content_tag(:div, class: 'modal fade', id: options[:id], data: options[:data]) do

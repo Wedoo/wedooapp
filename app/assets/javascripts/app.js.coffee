@@ -22,5 +22,10 @@ $document.on 'click', 'a[data-twitter-sharer], a[data-facebook-sharer]', (e) ->
   window.open( this.href, service, 'height=400,width=550,left=100,top=100,resizable=yes,location=no,status=no,toolbar=no' );
   e.preventDefault()
   
+  
+# Turbolinks loading
 $document.on 'page:fetch', ->
-  $('#loading-indicator').animate({top: 0}, 300)
+  $('#loading-indicator').show().animate({top: 0}, 300)
+
+$document.on 'page:receive', ->
+  $('#loading-indicator').hide().css('top', '-50px')

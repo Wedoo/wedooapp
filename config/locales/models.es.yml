@@ -22,6 +22,8 @@ es:
       initiative:
         title: Título
         active: Activa
+        image: Imagen
+        delete_image: ¿Borrar imagen?
         description: Descripción
         hashtag: Hashtag
       sign:

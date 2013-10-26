@@ -464,10 +464,19 @@ table td {text-shadow:0 1px 0 #fff;}
 	border-top-color:#bbb;
 	margin:7px 0;
 }
+
+/* Initiatives */
+.social-share {display:inline-block;}
 .textBox {margin-bottom:30px;}
+.textBox img.pull-left {margin:0 20px 20px 0;}
+.textBox img.clearfix.img-responsive {margin-bottom:10px;}
+.textBox ol, .textBox ul {padding-left:30px;}
+.textBox li {clear:both;}
 .actionBox {
 	padding-top:10px;
 	padding-bottom:10px;
+	background-repeat:repeat-y;
+	background-image:url(../img/actionbox.png); 
 }
 .actionBox > p {
 	margin:0 65px 0 40px;
@@ -478,24 +487,36 @@ table td {text-shadow:0 1px 0 #fff;}
 }
 .actionBox > i {
 	margin:-10px -19px;
-	padding:10px 19px;
+	padding:10px 16px;
 	color:#fff;
 	font-size:140%;
 	height:52px;
 	width:52px;
 	line-height:30px;
 }
-#signButton, .signHeader {background:#d3ecf3;}
-#signButton > i {background:#5bc0de;}
+#signButton, .signHeader {background-color:#d3ecf3;}
+#signButton {
+	/*background-color:#5bc0de;*/
+	background-position:0 0;
+}
 .signTitle {color:#4bafcd;}
-#donateButton, .donateHeader {background:#f9ead5;}
-#donateButton > i {background:#f0ad4e;}
+#donateButton, .donateHeader {background-color:#f9ead5;}
+#donateButton {
+	/*background-color:#f0ad4e;*/
+	background-position:-1200px 0;
+}
 .donateTitle {color:#e5982c;}
-#spamButton, .spamHeader {background:#ccf8cc;}
-#spamButton > i {background:#5cb85c;}
+#spamButton, .spamHeader {background-color:#ccf8cc;}
+#spamButton {
+	/*background-color:#5cb85c;*/
+	background-position:-2400px 0;
+}
 .spamTitle {color:#4da74d;}
-#protestButton, .protestHeader {background:#f9cfce;}
-#protestButton > i {background:#d9534f;}
+#protestButton, .protestHeader {background-color:#f9cfce;}
+#protestButton {
+	/*background-color:#d9534f;*/
+	background-position:-3600px 0;
+}
 .protestTitle {color:#d9534f;}
 i {margin-right:5px;}
 

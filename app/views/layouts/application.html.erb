@@ -23,15 +23,6 @@
 		<!-- NavBar -->
 		<div class="navbar navbar-inverse">
 			<div class="container">
-        <ul class="nav navbar-nav pull-left">
-          <li>
-            <% unless user_signed_in? %>
-              <%= link_to "Ingresa", new_user_session_path %>
-            <% else %>
-              <%= link_to "Salir", destroy_user_session_path, method: :delete %>
-            <% end %>
-          </li>
-        </ul>
 				<ul class="nav navbar-nav pull-right">
 					<% unless ong.webpage.blank? %>
 						<li>
@@ -47,6 +38,17 @@
 							<% end %>
 						</li>
 					<% end %>
+          <li>
+            <% unless user_signed_in? %>
+              <%= link_to new_user_session_path do %>
+                <i class="icon-user"></i><span class="hidden-xs">Login</span>
+              <% end %>
+            <% else %>
+              <%= link_to destroy_user_session_path, method: :delete do %>
+                <i class="icon-user"></i><span class="hidden-xs">Salir</span>
+              <% end %>
+            <% end %>
+          </li>
 				</ul>
 			</div>
 		</div>

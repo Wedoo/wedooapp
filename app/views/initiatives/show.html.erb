@@ -1,4 +1,4 @@
-<%= modal_window id: 'signs-activation-confirmation', data: { backdrop: 'static'} do %>
+<%= modal_window id: 'signs-activation-confirmation' do %>
   <div class="modal-header signHeader">
   	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
   	<h5 class="modal-title signTitle"><i class="icon-pencil"></i>Activar Firmas</h5>
@@ -13,10 +13,10 @@
 	</div>
 <% end %>
 
-<%= modal_window id: 'signs-deactivation-confirmation', data: { backdrop: 'static'} do %>
+<%= modal_window id: 'signs-deactivation-confirmation' do %>
   <div class="modal-header signHeader">
   	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-  	<h5 class="modal-title signTitle"><i class="icon-pencil"></i>Activar Firmas</h5>
+  	<h5 class="modal-title signTitle"><i class="icon-pencil"></i>Desactivar Firmas</h5>
   </div>
   <div class="modal-body">
     <p>Los potenciales adherentes ya no podrán demostrar su interés por tu iniciativa.</p>
@@ -24,6 +24,61 @@
   <div class="modal-footer">
 		<button type="button" class="btn btn-link cancel" data-dismiss="modal">Cancelar</button>
     <%= link_to "Confirmar", toggle_signs_active_ong_initiative_path(ong, @initiative), class: "btn btn-info confirm" %>
+	</div>
+<% end %>
+
+<%= modal_window id: 'spam-activation-confirmation' do %>
+  <div class="modal-header spamHeader">
+  	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+  	<h5 class="modal-title spamTitle"><i class="icon-envelope"></i>Activar Comunicación con Legisladores</h5>
+  </div>
+  <%= simple_form_for @initiative, url: toggle_spam_active_ong_initiative_path(ong, @initiative), method: :patch, id: 'spam_activation_form' do |f| %>
+    <div class="modal-body">
+      <p>Invita a tus adherentes a comunicarse con sus legisladores. Para ello, especifica quiénes son los legisladores pertientes según el estado de tu iniciativa:</p>
+      <div class="row">
+  			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <%= f.label 'Legisladores pertinentes' %>
+  			</div>
+  			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <%= f.input :spam_active, as: :hidden, input_html: { value: true } %>
+  				<div class="btn-group" data-toggle="buttons">
+            <%= f.label :spam_receiver_selected, class: "btn btn-sm btn-success#{@initiative.spam_receiver_selected == :commission ? " active" : ""}" do %>
+              <%= f.radio_button(:spam_receiver_selected, :commission) + "Comisión" %>
+            <% end %>
+            <%= f.label :spam_receiver_selected, class: "btn btn-sm btn-success#{@initiative.spam_receiver_selected == :deputies ? " active" : ""}" do %>
+              <%= f.radio_button(:spam_receiver_selected, :deputies) + "Cámara" %>
+            <% end %>
+            <%= f.label :spam_receiver_selected, class: "btn btn-sm btn-success#{@initiative.spam_receiver_selected == :senate ? " active" : ""}" do %>
+              <%= f.radio_button(:spam_receiver_selected, :senate) + "Senado" %>
+            <% end %>
+  				</div>
+  			</div>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <div id="select-commission">
+            <%= f.input :spam_param, collection: Commission.all, prompt: 'Selecciona la comisión…', label: '¿Cuál Comisión?' %>
+          </div>
+        </div>
+  		</div>
+    </div>
+    <div class="modal-footer">
+  		<button type="button" class="btn btn-link cancel" data-dismiss="modal">Cancelar</button>
+      <%= f.button :submit, "Confirmar", class: "btn btn-success confirm" %>
+  	</div>
+  <% end %>
+<% end %>
+
+<%= modal_window id: 'spam-deactivation-confirmation' do %>
+  <div class="modal-header spamHeader">
+  	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+  	<h5 class="modal-title spamTitle"><i class="icon-envelope"></i>Desactivar Comunicación con Legisladores</h5>
+  </div>
+  <div class="modal-body">
+    <p>Actualmente tienes configurado la comunicación con <strong><%= human_initiative_spam_receiver(@initiative) %></strong>.</p>
+    <p>Tus adherentes no serán instados a comunicarse con sus legisladores.</p>
+  </div>
+  <div class="modal-footer">
+		<button type="button" class="btn btn-link cancel" data-dismiss="modal">Cancelar</button>
+    <%= link_to "Confirmar", toggle_spam_active_ong_initiative_path(ong, @initiative), class: "btn btn-success confirm" %>
 	</div>
 <% end %>
 
@@ -39,24 +94,31 @@
           <%= render 'active_inactive', icon_class: 'pencil', title: 'Firmas', object: @initiative, attribute: :signs_active, options: { event_name: 'form:signs-active' } %>
           <%= render 'active_inactive', icon_class: 'money', title: 'Donaciones', object: @initiative, attribute: :donations_active, options: {} %>
           <%= render 'active_inactive', icon_class: 'group', title: 'Manifestación', object: @initiative, attribute: :protest_active, options: {} %>
-          <%= render 'active_inactive', icon_class: 'comments', title: 'Spamear', object: @initiative, attribute: :spam_active, options: {} %>
+          <%= render 'active_inactive', icon_class: 'comments', title: 'Comunicación', object: @initiative, attribute: :spam_active, options: { event_name: 'form:spam-active' } %>
   			</div>
   		</div>
     <% end %>
     
 		<h1><%= @initiative.title %>
-      <%= link_to facebook_url(@initiative), target: "_blank", data: { "facebook-sharer" => true } do %>
-        <i class="icon-facebook-sign"></i>
-      <% end %>
-      <%= link_to tweet_url(@initiative), target: "_blank", data: { "twitter-sharer" => true } do %>
-        <i class="icon-twitter-sign"></i>
-      <% end %>
+      <span class="social-share">
+        <%= link_to facebook_url(@initiative), target: "_blank", data: { "facebook-sharer" => true } do %>
+          <i class="icon-facebook-sign"></i>
+        <% end %>
+        <%= link_to tweet_url(@initiative), target: "_blank", data: { "twitter-sharer" => true } do %>
+          <i class="icon-twitter-sign"></i>
+        <% end %>
+      </span>
     </h1>
 	</div>
 </div>
 
 <div class="row">
 	<div class="col-xs-12 col-sm-6 col-md-8 col-lg-8">
+    
+		<div id="iniciative-description" class="textBox">
+      <%= image_tag @initiative.image.url(:medium), alt: "Imagen iniciativa", class: 'thumbnail pull-left' if @initiative.image.exists? %>
+			<%= @initiative.description.html_safe %>
+		</div>
     <% unless permitted_to? :manage, :initiatives %>
       <% if @initiative.signs_active %>
     		<div id="signButton" class="well clearfix actionBox">
@@ -69,14 +131,14 @@
     		<div id="donateButton" class="well clearfix actionBox">
     			<span href="#" class="pull-right"><%= donation_button %></span>
     			<i class="pull-left icon-bullhorn"></i>
-    			<p>Con tu ayuda podríamos llegar a <%= @initiative.signs_count + 2000 %> personas</p>
+    			<p>Con tu ayuda podríamos llegar a más personas</p>
     		</div>
       <% end %>
       <% if @initiative.spam_active %>
         <div id="spamButton" class="well clearfix actionBox">
       		<a href="#" class="pull-right btn btn-success">Envía</a>
       		<i class="pull-left icon-envelope"></i>
-      		<p>Pronto se vota esta ley, escríbele a tu legislador</p>
+      		<p>Pronto se discutirá en <%= human_initiative_spam_receiver(@initiative) %>, escríbele a tus representantes</p>
       	</div>
       <% end %>
       <% if @initiative.protest_active %>
@@ -87,10 +149,6 @@
       	</div>
       <% end %>
     <% end %>
-		<div class="textBox">
-			<%= @initiative.description.html_safe %>
-		</div>
-<!-- 		<%= donation_button %> -->
 		<div class="well statistics">
 			<h6><i class="icon-bar-chart"></i>Estadísticas de esta iniciativa</h6>
 			<hr>

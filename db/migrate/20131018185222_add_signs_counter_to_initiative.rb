@@ -1,6 +1,6 @@
 class AddSignsCounterToInitiative < ActiveRecord::Migration
   def change
-    add_column :initiatives, :signs_count, :integer
+    add_column :initiatives, :signs_count, :integer, default: 0
     
     Initiative.reset_column_information
     Initiative.all.each do |i|

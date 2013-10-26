@@ -29,5 +29,15 @@ module InitiativesHelper
       base.merge({ url: ong_initiative_path(ong, initiative), method: :patch })
     end
   end
-    
+  
+  def human_initiative_spam_receiver(initiative)
+    case initiative.spam_receiver_selected
+    when :commission
+      return "la comisión de #{initiative.spam_receiver.name}"
+    when :deputies
+      return "la Cámara de Diputados"
+    when :senate
+      return "el Senado"
+    end
+  end
 end

@@ -2,7 +2,7 @@ class InitiativesController < ApplicationController
   
   filter_access_to [:new, :create, :edit, :update, :destroy], require: :manage
   
-  before_action :set_initiative, only: [:show, :edit, :update, :destroy]
+  before_action :set_initiative, only: [:show, :edit, :update, :destroy, :toggle_signs_active, :toggle_spam_active]
   
   def new
     @initiative = Initiative.new
@@ -49,16 +49,24 @@ class InitiativesController < ApplicationController
   end
   
   def toggle_signs_active
-    set_initiative
     @initiative.signs_active = !@initiative.signs_active
     @initiative.save
     redirect_to [ong, @initiative]
   end
   
+  def toggle_spam_active
+    if request.get?
+      @initiative.spam_active = false
+    else
+      @initiative.update(params.require(:initiative).permit(:spam_param, :spam_receiver_selected, :spam_active))
+    end
+    @initiative.save
+    redirect_to action: :show
+  end
   
   private
   def initiative_params
-    params.require(:initiative).permit(:title, :description, :hashtag, :image, :active)
+    params.require(:initiative).permit(:title, :description, :hashtag, :image, :delete_image, :active)
   end
   
   def set_initiative

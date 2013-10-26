@@ -5,6 +5,11 @@ class Initiative < ActiveRecord::Base
   has_many :signs, dependent: :destroy
   has_many :ads, dependent: :destroy
   has_many :related_links, dependent: :destroy
+  belongs_to :spam_receiver, polymorphic: true
+  
+  attr_accessor :delete_image, :spam_param
+  
+  before_save :delete_image?
   
   has_attached_file :image,
       styles: { medium: "300x300>", thumb: "80x80>" },
@@ -25,7 +30,30 @@ class Initiative < ActiveRecord::Base
   validates :hashtag, presence: true, format: { with: /\A[a-z][\w]*\Z/i }
   
   def has_actions?
-    signs_active || donations_active
+    signs_active || donations_active || spam_active
+  end
+  
+  def spam_receiver_selected
+    return nil if self.spam_receiver.nil?
+    return self.spam_receiver.codename.to_sym if self.spam_receiver_type == Chamber.name
+    return :commission if self.spam_receiver_type == Commission.name
+    return nil
+  end
+  
+  def spam_receiver_selected=(value)
+    case value
+    when :commission.to_s
+      self.spam_receiver = Commission.find(self.spam_param)
+    when :deputies.to_s
+      self.spam_receiver = Chamber.find_by(codename: :deputies)
+    when :senate.to_s
+      self.spam_receiver = Chamber.find_by(codename: :senate)
+    end
+  end
+  
+  private
+  def delete_image?
+    image.clear if delete_image == '1'
   end
   
 end
