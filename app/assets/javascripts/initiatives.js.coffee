@@ -72,6 +72,14 @@ $(document).on 'form:spam-active', (event, at) ->
       at.toggle()
   $elem.modal()
 
+$(document).on 'form:donations-active', (event, at) ->
+  value = at.value()
+  $elem = if (value) then $('#donations-deactivation-confirmation') else $('#donations-activation-confirmation')
+  unless $elem.data('handler')
+    $elem.data('handler', true).on 'hide.bs.modal', ->
+      at.toggle()
+  $elem.modal()
+
 
 
 this.InitiativesModule ||= {}
@@ -80,3 +88,13 @@ this.InitiativesModule.refresh_signs = (count) ->
   $('[data-signs-count]').each (i) -> 
     $this = $(this)
     $this.html(count + +$this.data("signs-count"))
+
+$(document).ready ->
+  $(".ajax-donations-container").load $(".ajax-donations-container").attr("load-parameter")
+  $("#paypal-next").click ->
+    $(".ajax-donations-container form").submit()
+  $("#next-to-campaigns").click ->
+    $("#select_accounts").submit()
+  $("#next-to-the-end").click ->
+    $("#form-campaigns-list").submit()
+  $("#donations-activation-adwords-paso-2").modal()  if adwords_step is 2

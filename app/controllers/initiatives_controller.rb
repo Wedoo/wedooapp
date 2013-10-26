@@ -1,9 +1,30 @@
+require 'adwords_api'
 class InitiativesController < ApplicationController
   
   filter_access_to [:new, :create, :edit, :update, :destroy], require: :manage
   
   before_action :set_initiative, only: [:show, :edit, :update, :destroy, :toggle_signs_active, :toggle_spam_active]
   
+  GOOGLE_LOGOUT_URL = 'https://www.google.com/accounts/Logout'
+
+
+  def prompt()
+    api = get_adwords_api()
+    if session[:token]
+      redirect_to home_index_path
+    else
+      begin
+        token = api.authorize({
+          :oauth2_callback => login_callback_url,
+          :access_type => :online
+          })
+
+      rescue AdsCommon::Errors::OAuth2VerificationRequired => e
+        @login_url = e.oauth_url
+      end
+    end
+  end
+
   def new
     @initiative = Initiative.new
   end
@@ -22,6 +43,25 @@ class InitiativesController < ApplicationController
 
   def show
     @initiatives = Initiative.ong_by_actions(ong).only_active.limit(10)
+    if permitted_to? :manage, :initiatives
+      @api = AdwordAuth.create_adwords_api(@initiative.ong)
+      
+      if !@initiative.ong.adword_auth
+        begin
+          token = @api.authorize({
+            :oauth2_callback => create_token_ong_adword_auths_url(@ong) + "?initiative_id=#{@initiative.id}",
+            :access_type => :offline
+            })
+          
+        rescue AdsCommon::Errors::OAuth2VerificationRequired => e
+          @login_url = e.oauth_url
+        end    
+
+      end
+
+     
+
+    end
   end
 
   def edit
@@ -46,10 +86,18 @@ class InitiativesController < ApplicationController
   def index
     @initiatives = Initiative.ong_by_actions(ong).only_active
     @past_initiatives = Initiative.where(ong: ong, active: false).limit(10)
+
   end
   
   def toggle_signs_active
     @initiative.signs_active = !@initiative.signs_active
+    @initiative.save
+    redirect_to [ong, @initiative]
+  end  
+  
+  def toggle_donations_active
+    set_initiative
+    @initiative.donations_active = !@initiative.donations_active
     @initiative.save
     redirect_to [ong, @initiative]
   end

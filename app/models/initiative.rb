@@ -1,12 +1,14 @@
 class Initiative < ActiveRecord::Base
   belongs_to :ong
   has_one :initiative_stat, dependent: :destroy
+  has_one :campaign, dependent: :destroy
   has_many :donations, dependent: :destroy
   has_many :signs, dependent: :destroy
   has_many :ads, dependent: :destroy
   has_many :related_links, dependent: :destroy
   belongs_to :spam_receiver, polymorphic: true
   
+
   attr_accessor :delete_image, :spam_param
   
   before_save :delete_image?
@@ -50,10 +52,20 @@ class Initiative < ActiveRecord::Base
       self.spam_receiver = Chamber.find_by(codename: :senate)
     end
   end
+
+  def has_paypal_app?
+    !self.ong.payment_apps.empty?
+  end
+
+  def get_paypal_id
+    self.ong.get_paypal.id
+  end  
   
   private
   def delete_image?
     image.clear if delete_image == '1'
   end
   
+
+
 end

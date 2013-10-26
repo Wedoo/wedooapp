@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  initiative_id: 
+  name: MyString
+  status: 1
+
+two:
+  initiative_id: 
+  name: MyString
+  status: 1

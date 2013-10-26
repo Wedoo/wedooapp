@@ -1,20 +1,22 @@
-<%= simple_form_for([ong,@paypal_app]) do |f| %>
-  <%= f.error_notification %>
+<%= simple_form_for([ong,@paypal_app],:url => ong_paypal_app_path(ong,@paypal_app, :initiative_id => @initiative.id), wrapper: :paypal,html: { class: 'form-horizontal ppf', multipart: true}, remote: true) do |f| %>
 
   <div class="form-inputs">
-    <%= f.input :active, as: :boolean%>
-    <%= f.input :mode, priority: [ "sandbox" ], collection: [ ["sandbox", 0],["live",1 ]]%>
-    <h2>REST API</h2>
-    <%= f.input :client_id , label: 'Client id'%>
-    <%= f.input :client_secret, label: 'Client secret' %>
-    <h2>Classic API</h2>   
-    <%= f.input :app_id , label: 'App id'%>
-    <%= f.input :username %>
-    <%= f.input :password %>
-    <%= f.input :signature %>
+    <%= f.error_notification%>
+    <%= f.input :active, label: "¿Activa?", as: :boolean%>
+    <%#= f.input :mode, priority: [ "sandbox" ], collection: [ ["sandbox", 0],["live",1 ]]%>
+<!--     <h6>REST API</h6>
+    <hr> -->
+    <%#= f.input :client_id , label: 'Client id'%>
+    <%#= f.input :client_secret, label: 'Client secret' %>
+    <h6>Firma API</h6>   
+    <hr>
+    <%#= f.input :app_id , label: 'App id'%>
+    <%= f.input :username , label: "Nombre de usuario" %>
+    <%= f.input :password , as: :string, label: "Contraseña"%>
+    <%= f.input :signature , label: "Firma"%>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%#= f.button :submit %>
   </div>
 <% end %>

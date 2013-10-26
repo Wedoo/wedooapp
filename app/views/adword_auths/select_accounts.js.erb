@@ -1,0 +1,9 @@
+<% if @accounts_errors %>
+		alert("debes seleccionar una cuenta")
+<% else %>
+$("#donations-activation-adwords-paso-3 .ajax-donations-container-no-load").load("<%="./#{@initiative.id}/campaigns/new?account_id=#{@account_id} #form-campaigns-list"%>")
+		$("#donations-activation-adwords-paso-2 .modal-content").empty();
+
+		$("#donations-activation-adwords-paso-2 .modal-content").append($("#donations-activation-adwords-paso-3 .modal-content"))
+
+<% end %>

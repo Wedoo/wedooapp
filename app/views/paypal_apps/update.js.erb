@@ -1,0 +1,17 @@
+<% if @paypal_app.errors.count == 0 %>
+
+	<%if !@paypal_app.ong.adword_auth%>
+
+ 	$('#donations-activation-confirmation .modal-content').empty();
+ 	$('#donations-activation-confirmation .modal-content').append($('#donations-activation-adwords-confirmation .modal-content').html())
+ 	<% else %>
+ 		<%flash[:auth_adwords]=true%>
+ 		window.location='<%="/ongs/#{ong.id}/initiatives/#{@initiative.id}"%>'
+ 	<% end %>
+
+<% else %>
+
+$('.edit_ong_paypal_app').remove();
+$('#new_ong_paypal_app').after('<%= j render("form") %>');
+
+<% end %>

@@ -7,10 +7,17 @@ Wedoo::Application.routes.draw do
   resources :users
 
   resources :ongs, only: :show do
+    resources :adword_auths do
+      get 'create_token', on: :collection
+      match 'select_accounts', on: :collection, via: [:get, :post]
+    end
     resources :initiatives do
       get 'toggle_signs_active', on: :member
       match 'toggle_spam_active', on: :member, via: [:get, :patch]
+      get 'toggle_donations_active', on: :member
       resources :signs, only: [:new, :create, :index]
+      resources :campaigns
+      
       resources :donations do 
         get 'thanks', on: :collection
         get 'no_thanks', on: :collection
