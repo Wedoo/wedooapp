@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131025141557) do
+ActiveRecord::Schema.define(version: 20131026005134) do
 
   create_table "ads", force: true do |t|
     t.string   "type"
@@ -101,6 +101,18 @@ ActiveRecord::Schema.define(version: 20131025141557) do
   add_index "initiatives", ["ong_id"], name: "index_initiatives_on_ong_id", using: :btree
   add_index "initiatives", ["title"], name: "index_initiatives_on_title", using: :btree
 
+  create_table "municipalities", force: true do |t|
+    t.string   "name"
+    t.integer  "district"
+    t.integer  "circunscription"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "municipalities", ["circunscription"], name: "index_municipalities_on_circunscription", using: :btree
+  add_index "municipalities", ["district"], name: "index_municipalities_on_district", using: :btree
+  add_index "municipalities", ["name"], name: "index_municipalities_on_name", unique: true, using: :btree
+
   create_table "ongs", force: true do |t|
     t.string   "name",                    null: false
     t.text     "mission"
@@ -154,19 +166,21 @@ ActiveRecord::Schema.define(version: 20131025141557) do
   add_index "related_links", ["initiative_id"], name: "index_related_links_on_initiative_id", using: :btree
 
   create_table "representatives", force: true do |t|
-    t.string   "first_name",       null: false
-    t.string   "last_name",        null: false
-    t.string   "second_last_name", null: false
-    t.integer  "chamber_id",       null: false
-    t.string   "party",            null: false
-    t.string   "email",            null: false
+    t.string   "first_name",         null: false
+    t.string   "last_name",          null: false
+    t.string   "second_last_name",   null: false
+    t.integer  "chamber_id",         null: false
+    t.string   "party",              null: false
+    t.string   "email",              null: false
     t.string   "twitter"
     t.string   "facebook"
     t.string   "webpage"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "electoral_division"
   end
 
+  add_index "representatives", ["electoral_division"], name: "index_representatives_on_electoral_division", using: :btree
   add_index "representatives", ["first_name"], name: "index_representatives_on_first_name", using: :btree
   add_index "representatives", ["last_name"], name: "index_representatives_on_last_name", using: :btree
   add_index "representatives", ["second_last_name"], name: "index_representatives_on_second_last_name", using: :btree

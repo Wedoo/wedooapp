@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  district: 1
+  circunscription: 1
+
+two:
+  name: MyString
+  district: 1
+  circunscription: 1
