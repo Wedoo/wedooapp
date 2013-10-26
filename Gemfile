@@ -84,6 +84,7 @@ gem 'puma'
 gem 'acts_as_relation', '~> 1.0'
 
 gem 'paypal-sdk-buttonmanager'
+gem 'google-adwords-api'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

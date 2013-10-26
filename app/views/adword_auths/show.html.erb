@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Initiative:</strong>
+  <%= @adword_auth.initiative %>
+</p>
+
+<p>
+  <strong>Access token:</strong>
+  <%= @adword_auth.access_token %>
+</p>
+
+<p>
+  <strong>Refresh token:</strong>
+  <%= @adword_auth.refresh_token %>
+</p>
+
+<p>
+  <strong>Issued at:</strong>
+  <%= @adword_auth.issued_at %>
+</p>
+
+<p>
+  <strong>Expires in:</strong>
+  <%= @adword_auth.expires_in %>
+</p>
+
+<%= link_to 'Edit', edit_adword_auth_path(@adword_auth) %> |
+<%= link_to 'Back', adword_auths_path %>

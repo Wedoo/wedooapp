@@ -1,0 +1,7 @@
+<%if @campaigns_list_error%>
+
+	alert("debes seleccionar una campaña")
+<%else%>
+	window.location='<%="/ongs/#{@ong.id}/initiatives/#{@initiative.id}"%>'
+
+<%end%>

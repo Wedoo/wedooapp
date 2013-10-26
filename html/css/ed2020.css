@@ -20,7 +20,7 @@ h1 a,h2 a,h3 a,h4 a,h5 a,h6 a {color:#006932;}
 h1 a:hover,h2 a:hover,h3 a:hover,h4 a:hover,h5 a:hover,h6 a:hover {text-decoration:none; color:#004c24;}
 .btn.btn-default {background:#006932;}
 .btn.btn-default:hover, .btn.btn-default:active {background:#004c24;}
-table th {background:#006932;}
+table > thead > tr > th {background:#006932;}
 .table-bordered {border-top-color:#006932;}
 .table-bordered > thead > tr > th {border-right-color:#006932;}
 

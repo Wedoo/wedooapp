@@ -1,0 +1,17 @@
+<% if @accounts.empty? %>
+  No hay cuentas disponibles
+<% else %>
+
+  <%= simple_form_for :account_items, :url => select_accounts_ong_adword_auths_path(@ong) + "?initiative_id=#{@initiative.id}", wrapper: :paypal,html: { id: "select_accounts", class: 'form-horizontal', multipart: true}, remote: true do |f| %>
+  	<h6>Selecciona la cuenta que deseas asociar a la ONG </h6>
+  	<div class="form-inputs">
+    <%= f.input :account, collection: @all_accounts, as: :radio_buttons,value_method: :get_account_value, label_method: :get_account_label,  label: "Selecciona una cuenta" %>
+    </div>
+   	<div class="form-actions">
+    	
+    </div>
+  <% end %>
+
+
+<% end %>
+

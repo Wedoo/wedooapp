@@ -1,0 +1,35 @@
+<h1>Listing adword_auths</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Initiative</th>
+      <th>Access token</th>
+      <th>Refresh token</th>
+      <th>Issued at</th>
+      <th>Expires in</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @adword_auths.each do |adword_auth| %>
+      <tr>
+        <td><%= adword_auth.initiative %></td>
+        <td><%= adword_auth.access_token %></td>
+        <td><%= adword_auth.refresh_token %></td>
+        <td><%= adword_auth.issued_at %></td>
+        <td><%= adword_auth.expires_in %></td>
+        <td><%= link_to 'Show', adword_auth %></td>
+        <td><%= link_to 'Edit', edit_adword_auth_path(adword_auth) %></td>
+        <td><%= link_to 'Destroy', adword_auth, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Adword auth', new_adword_auth_path %>

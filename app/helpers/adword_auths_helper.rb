@@ -1,0 +1,4 @@
+module AdwordAuthsHelper
+
+
+end

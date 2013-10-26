@@ -1,0 +1,19 @@
+<h1>Selecciona una campaña</h1>
+
+<% if @campaigns.empty? %>
+  No hay campañas disponibles
+<% else %>
+
+  <%= simple_form_for :campaign_items, :url => ong_initiative_campaigns_path(@ong, @initiative)+ "?account_id=#{@account_id}", wrapper: :paypal,html: { id: "form-campaigns-list",class: 'form-horizontal', multipart: true}, remote: true do |f| %>
+    <%= f.input :campaign, collection: @campaigns, as: :radio_buttons, value_method: :get_campaign_value, :selected => @campaigns.first.id, label_method: :get_campaign_label,  label: "Selecciona una campaña", required: true %>
+    <%#= f.button :submit %>
+  <% end %>
+
+
+<% end %>
+
+
+
+<%#= render 'form' %>
+
+<%#= link_to 'Back', campaigns_path %>

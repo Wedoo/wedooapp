@@ -438,7 +438,7 @@ initiative2 = Initiative.create do |i|
   EOF
   i.hashtag = "EducacionPublicaAHORA"
   i.signs_active = true
-  i.donations_active = true
+  i.donations_active = false
   i.ong = ong
   i.initiative_stat = InitiativeStat.new(signs_count: 101, donations_count: 11, donations_amount: 51, conversions_count: 21)
   i.image_file_name = "538669_10150861068473337_1259805122_n.jpeg"

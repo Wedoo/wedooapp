@@ -28,5 +28,5 @@ class ApplicationController < ActionController::Base
     subdomain = subdomain[0..-(@@wedoo_subdomain.size + 1)] if subdomain.include?(@@wedoo_subdomain)
     return @ong = Ong.find_by(subdomain: subdomain) || Ong.first
   end
-  
+
 end

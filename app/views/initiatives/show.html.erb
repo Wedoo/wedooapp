@@ -1,3 +1,144 @@
+<% if flash[:auth_adwords] %>
+
+
+  <%= modal_window id: 'donations-activation-adwords-paso-2' do %>
+
+    <div class="modal-header donateHeader">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      <h5 class="modal-title donateTitle"><i class="icon-bullhorn"></i> Activar Donaciones</h5>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        
+          <div class="ajax-donations-container" load-parameter="<%="../adword_auths/select_accounts?initiative_id=#{@initiative.id} #select_accounts"%>">
+
+          </div>
+        </div>
+      </div>  
+    </div>                         
+    <div class="modal-footer">
+      <button type="button" class="btn btn-link cancel" data-dismiss="modal">Cancelar</button>
+      <button type="button" id="next-to-campaigns" class="btn btn-info">Siguiente</button>
+      
+     
+      
+    </div>                 
+  <% end %>
+  <script type="text/javascript">
+
+    var adwords_step=2;
+  </script>
+
+  <%= modal_window id: 'donations-activation-adwords-paso-3' do %>
+
+    <div class="modal-header donateHeader">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      <h5 class="modal-title donateTitle"><i class="icon-bullhorn"></i> Activar Donaciones</h5>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          
+
+
+          <div class="ajax-donations-container-no-load">
+
+          </div>
+        </div>
+      </div>  
+    </div>                         
+    <div class="modal-footer">
+      <button type="button" class="btn btn-link cancel" data-dismiss="modal">Cancelar</button>
+      <button type="button" id="next-to-the-end" class="btn btn-info">Finalizar</button>
+      
+     
+      
+    </div>                 
+  <% end %>
+
+<% end %>
+<%= modal_window id: 'donations-deactivation-confirmation', data: { backdrop: 'static'} do %>
+  <div class="modal-header donateHeader">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h5 class="modal-title donateTitle"><i class="icon-bullhorn"></i> Activar Donaciones</h5>
+  </div>
+  <div class="modal-body">
+  ¿Estás seguro que quieres desactivar?
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-link cancel" data-dismiss="modal">Cancelar</button>
+    <%= link_to "Confirmar", toggle_donations_active_ong_initiative_path(ong, @initiative), class: "btn btn-info confirm" %>
+  </div>
+<% end %>
+
+<%= modal_window id: 'donations-activation-confirmation', data: { backdrop: 'static'} do %>
+
+  <div class="modal-header donateHeader">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h5 class="modal-title donateTitle"><i class="icon-bullhorn"></i> Activar Donaciones</h5>
+  </div>
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+            <% if !@initiative.has_paypal_app? %>
+              <p>Antes de poder manajer tus donaciones, es necesario que nos proveas autorización para consultar la cuenta de Paypal de tu organización. Si estás de acuerdo, haz clic <a href="https://www.paypal.com/us/cgi-bin/webscr?cmd=_login-api-run" target="_blank"> acá</a>, ingresa tus credenciales de paypal y luego copia y pega "Nombre de usuario de API", "Contraseña de API" y "Firma" en el formulario de abajo. </p>
+              <p>Si no tienes cuenta de PayPal, primero debes crear una. Te recomendamos que asocies la misma tarjeta de crédito a tu cuenta PayPal y a tu cuenta de Adwords, ya que una vez que recibas donaciones, los pagos de adwords deben ser cargados a una tarjeta de crédito.</p>
+
+              <p> La cuenta PayPal elegida se asociará a todas tus iniciativas. Solo se permite una cuenta de PayPal por organización</p>
+              <div class="ajax-donations-container" load-parameter="../paypal_apps/new #new_paypal_app">
+                
+                
+               
+
+              </div>
+            <%else %>
+
+              <p>¿Están correctos estos datos?</p> 
+              <p>Si necesitas cambiar de cuenta de PayPal, puedes obtener nuevos datos haciendo clic  <a href="https://www.paypal.com/us/cgi-bin/webscr?cmd=_login-api-run" target="_blank"> acá</a>.
+
+              <div class="ajax-donations-container" load-parameter="../paypal_apps/<%= @initiative.get_paypal_id%>/edit?initiative_id=<%= @initiative.id%> #edit_paypal_app_<%= @initiative.get_paypal_id%>">
+                
+                
+               
+
+              </div>           
+
+
+            <% end %>
+            </div>
+          </div>
+      </div>                           
+  <div class="modal-footer">
+    <button type="button" class="btn btn-link cancel" data-dismiss="modal">Cancelar</button>
+    <button type="button" id="paypal-next" class="btn btn-info">Siguiente</button>
+    
+  </div>                 
+<% end %>
+
+<%= modal_window id: 'donations-activation-adwords-confirmation', data: { backdrop: 'static'} do %>
+
+  <div class="modal-header donateHeader">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h5 class="modal-title donateTitle"><i class="icon-bullhorn"></i> Activar Donaciones</h5>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        Ahora necesitamos que nos autorices para obtener información de tu cuenta de adwords para  incrementar el presupuesto diario de la campaña asociada a la inciativa, dependiendo de las donaciones que vayas recibiendo.
+      </div>
+    </div>
+  </div>                           
+  <div class="modal-footer">
+    <button type="button" class="btn btn-link cancel" data-dismiss="modal">Cancelar</button>
+    <%= link_to "Autorizar", @login_url.to_s , class: "btn btn-info confirm" %>
+    
+   
+    
+  </div>                 
+<% end %>
+
 <%= modal_window id: 'signs-activation-confirmation' do %>
   <div class="modal-header signHeader">
   	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -92,7 +233,7 @@
   			<hr />
   			<div class="row">
           <%= render 'active_inactive', icon_class: 'pencil', title: 'Firmas', object: @initiative, attribute: :signs_active, options: { event_name: 'form:signs-active' } %>
-          <%= render 'active_inactive', icon_class: 'money', title: 'Donaciones', object: @initiative, attribute: :donations_active, options: {} %>
+          <%= render 'active_inactive', icon_class: 'money', title: 'Donaciones', object: @initiative, attribute: :donations_active, options: {event_name: 'form:donations-active'} %>
           <%= render 'active_inactive', icon_class: 'group', title: 'Manifestación', object: @initiative, attribute: :protest_active, options: {} %>
           <%= render 'active_inactive', icon_class: 'comments', title: 'Comunicación', object: @initiative, attribute: :spam_active, options: { event_name: 'form:spam-active' } %>
   			</div>
