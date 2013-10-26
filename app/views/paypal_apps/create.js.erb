@@ -1,12 +1,14 @@
 <% if @paypal_app.errors.count == 0 %>
-
-        $('#new_paypal_app').remove();
-        $('#new_ong_paypal_app').show();
-        $('#paypal_apps').append('<%= j render("paypal_app", :paypal_app => @paypal_app) %>');
+				//var paypal_form_error=false;
+        // $('#new_paypal_app').remove();
+        // $('#new_ong_paypal_app').show();
+        // $('#paypal_apps').append('<%= j render("paypal_app", :paypal_app => @paypal_app) %>');
+        $('#donations-activation-confirmation .modal-content').empty();
+        $('#donations-activation-confirmation .modal-content').append($('#donations-activation-adwords-confirmation .modal-body').html())
 
 <% else %>
-
-        $('#new_paypal_app').remove();
-        $('#new_ong_paypal_app').after('<%= j render("form") %>');
+				//var paypal_form_error=true;
+				$('.ajax-donations-container').empty();
+        $('.ajax-donations-container').append('<%= j render("form") %>');
 
 <% end %>

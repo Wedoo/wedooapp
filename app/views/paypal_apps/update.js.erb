@@ -1,6 +1,8 @@
 <% if @paypal_app.errors.count == 0 %>
 
-$('#new_ong_paypal_app').hide().after('<%= j render("form") %>');
+ 	$('#donations-activation-confirmation .modal-content').empty();
+ 	$('#donations-activation-confirmation .modal-content').append($('#donations-activation-adwords-confirmation .modal-content').html())
+
 
 <% else %>
 

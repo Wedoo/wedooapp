@@ -63,4 +63,11 @@ this.InitiativesModule.refresh_signs = (count) ->
     $this.html(count + +$this.data("signs-count"))
 
 $(document).ready ->
-  $("#paypal_form").load "../paypal_apps/new #new_paypal_app"
+  $(".ajax-donations-container").load $(".ajax-donations-container").attr("load-parameter")
+  $("#paypal-next").click ->
+    $(".ajax-donations-container form").submit()
+  $("#next-to-campaigns").click ->
+    $("#select_accounts").submit()
+  $("#next-to-the-end").click ->
+    $("#form-campaigns-list").submit()
+  $("#donations-activation-adwords-paso-2").modal()  if adwords_step is 2

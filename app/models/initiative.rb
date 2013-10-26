@@ -1,10 +1,12 @@
 class Initiative < ActiveRecord::Base
   belongs_to :ong
   has_one :initiative_stat, dependent: :destroy
+  has_one :campaign, dependent: :destroy
   has_many :donations, dependent: :destroy
   has_many :signs, dependent: :destroy
   has_many :ads, dependent: :destroy
   has_many :related_links, dependent: :destroy
+
   
   has_attached_file :image,
       styles: { medium: "300x300>", thumb: "80x80>" },
@@ -30,6 +32,10 @@ class Initiative < ActiveRecord::Base
   
   def has_paypal_app?
     !self.ong.payment_apps.empty?
+  end
+
+  def get_paypal_id
+    self.ong.get_paypal.id
   end
 
 end

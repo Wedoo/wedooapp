@@ -25,7 +25,6 @@ class PaymentAppsController < ApplicationController
   # POST /payment_apps.json
   def create
     @payment_app = PaymentApp.new(payment_app_params)
-
     respond_to do |format|
       if @payment_app.save
         format.html { redirect_to @payment_app, notice: 'Payment app was successfully created.' }
