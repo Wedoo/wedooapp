@@ -650,12 +650,12 @@ table#legislative-observatory i {
 
 /* Forms
 ------------------------------------------------------------------*/
-input[type="submit"],
 input[type="text"],
+input[type="email"],
 input[type="password"],
 select,
 textarea {
-	font-size:95%;
+	font-size:13px;
 }
 input[type="submit"],
 button, .btn,
