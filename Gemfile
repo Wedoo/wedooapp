@@ -35,7 +35,7 @@ gem 'devise'
 gem 'declarative_authorization'
 
 # bootstrap 3
-gem 'bootstrap-sass', git: 'https://github.com/thomas-mcdonald/bootstrap-sass', branch: '3'
+gem 'bootstrap-sass', '~> 3.0.3.0'
 
 # paginación
 gem 'kaminari'
