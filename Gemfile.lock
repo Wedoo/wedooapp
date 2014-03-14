@@ -101,7 +101,7 @@ GEM
       httpi (~> 1.1.0)
       savon (~> 1.2.0)
       signet (~> 0.5.0)
-    google-adwords-api (0.10.0)
+    google-adwords-api (0.11.1)
       google-ads-common (~> 0.9.3)
     gyoku (0.4.6)
       builder (>= 2.1.2)
@@ -251,7 +251,7 @@ DEPENDENCIES
   devise
   font-awesome-rails
   foreman
-  google-adwords-api
+  google-adwords-api (~> 0.11.1)
   jbuilder (~> 1.2)
   jquery-rails
   kaminari

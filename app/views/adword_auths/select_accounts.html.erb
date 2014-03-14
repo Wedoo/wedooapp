@@ -1,5 +1,10 @@
+<div id="select_accounts_container">
 <% if @accounts.empty? %>
-  No hay cuentas disponibles
+  <h4>¡No hay cuentas disponibles!</h4> 
+  <p>Debes seleccionar una cuenta de google que esté asociada a una cuenta de Adwords. Si no tienes ninguna, entonces debes crear una cuenta de Adwords en <a rel="stylesheet" type="text/css" href="https://adwords.google.com"> https://adwords.google.com</a></p>
+  <p></p>
+  <p> Vuelve cuando estés listo joven padawan...</p>
+  
 <% else %>
 
   <%= simple_form_for :account_items, :url => select_accounts_ong_adword_auths_path(@ong) + "?initiative_id=#{@initiative.id}", wrapper: :paypal,html: { id: "select_accounts", class: 'form-horizontal', multipart: true}, remote: true do |f| %>
@@ -15,3 +20,4 @@
 
 <% end %>
 
+</div>

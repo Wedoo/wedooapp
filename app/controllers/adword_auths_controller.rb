@@ -105,7 +105,7 @@ class AdwordAuthsController < ApplicationController
             @all_accounts << account
           end
         end
-      end
+      end if !@accounts.empty?
     else
       respond_to do |format|
         if params.has_key? :account_items
